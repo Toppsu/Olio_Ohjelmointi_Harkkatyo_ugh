@@ -4,6 +4,8 @@ package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
 // Moro Martin
 
+// Terve tämän o kirjottanu Martin
+
 public class Kissa_koira {
     String nimi = "kissa";
 
