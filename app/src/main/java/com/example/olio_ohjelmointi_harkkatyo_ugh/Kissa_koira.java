@@ -1,5 +1,7 @@
 package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
+//Hei topi
+
 public class Kissa_koira {
     String nimi = "kissa";
 
