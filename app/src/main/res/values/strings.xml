@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Olio_Ohjelmointi_Harkkatyo_ugh</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="sportti_ppi">Sportti Äppi</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
