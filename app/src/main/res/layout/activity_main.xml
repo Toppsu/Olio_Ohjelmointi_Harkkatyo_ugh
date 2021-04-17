@@ -42,9 +42,8 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
         android:layout_below="@+id/password"
-        />
+        android:text="@string/login" />
 
     <Button
         android:id="@+id/signButton"
