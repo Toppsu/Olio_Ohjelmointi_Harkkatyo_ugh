@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
+
+    public void openMealActivity(View v){
+        Intent intent = new Intent(this, MealConstructor.class);
+        startActivity(intent);
+    }
 }
