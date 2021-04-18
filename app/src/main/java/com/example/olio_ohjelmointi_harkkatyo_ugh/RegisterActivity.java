@@ -43,13 +43,16 @@ public class RegisterActivity extends AppCompatActivity {
         if (emailInput.isEmpty()) {                                             //Checks if the field is empty
             textInputEmail.setError("Field can't be empty");
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {     //Checks if the email address follows the guidelines
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {     //Checks if the email address follows the guidelines / e-mail pattern
             textInputEmail.setError("Enter a valid email address");
             return false;
         } else {                                                                //Valid email, remove errors
             textInputEmail.setError(null);
             return true;
         }
+
+        //THIS SHOULD CHECK (FROM A DATABASE) IF THE EMAIL ADDRESS IS ALREADY USED FOR SOME OTHER ACCOUNT
+
     }
 
     private boolean validatePassword(){                                         //Checks that password fulfills the requirements
