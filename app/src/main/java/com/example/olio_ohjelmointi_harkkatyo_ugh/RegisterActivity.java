@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.EditText;
 
 import java.util.regex.Pattern;
@@ -49,6 +50,33 @@ public class RegisterActivity extends AppCompatActivity {
             textInputEmail.setError(null);
             return true;
         }
+    }
+
+    private boolean validatePassword(){                                         //Checks that password fulfills the requirements
+        String passwordInput = textInputPassword.getText().toString().trim();
+        String passwordConfirmInput = textInputConfirmPassword.getText().toString().trim();
+
+        if (passwordInput.isEmpty()){
+            textInputEmail.setError("Field can't be empty");
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
+            textInputPassword.setError("Password doesn't fulfill the requirements");    //There could be more specific info on what is missing
+            return false;
+        } else if (passwordInput != passwordConfirmInput){
+            textInputConfirmPassword.setError("Passwords don't match");
+            return false;
+        } else {
+            textInputConfirmPassword.setError(null);
+            textInputPassword.setError(null);
+            return true;
+        }
+    }
+
+    public void confirmInput(View v){
+        if (!validateEmail() | validatePassword()){
+            return;
+        }
+
     }
 
 }
