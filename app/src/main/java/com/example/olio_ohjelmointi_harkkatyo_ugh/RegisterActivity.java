@@ -11,20 +11,17 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText textInputEmail;
-    EditText textInputUsername;
-    EditText textInputPassword;
-    EditText textInputConfirmPassword;
+    EditText textInputEmail, textInputUsername, textInputPassword, textInputConfirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        textInputEmail = findViewById(R.id.inputEmail);
-        textInputUsername = findViewById(R.id.inputUsername);
-        textInputPassword = findViewById(R.id.inputPassword);
-        textInputConfirmPassword = findViewById(R.id.inputConfirmPassword);
+        textInputEmail = (EditText)findViewById(R.id.inputEmail);
+        textInputUsername = (EditText)findViewById(R.id.inputUsername);
+        textInputPassword = (EditText)findViewById(R.id.inputPassword);
+        textInputConfirmPassword = (EditText)findViewById(R.id.inputConfirmPassword);
     }
 
     private static final Pattern PASSWORD_PATTERN =
