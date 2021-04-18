@@ -5,4 +5,6 @@
     <string name="username">Username</string>
     <string name="sportti_ppi">SporttiÄppi</string>
     <string name="sign_up">Sign Up</string>
+    <string name="add_workout">Add workout</string>
+    <string name="add_meal">Add meal</string>
 </resources>
