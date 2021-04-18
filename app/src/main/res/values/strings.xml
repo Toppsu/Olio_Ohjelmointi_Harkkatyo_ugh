@@ -7,4 +7,5 @@
     <string name="sign_up">Sign Up</string>
     <string name="add_workout">Add workout</string>
     <string name="add_meal">Add meal</string>
+    <string name="register">Register</string>
 </resources>

@@ -62,7 +62,7 @@
         android:background="#9E9E9E"
         android:backgroundTint="#9E9E9E"
         android:onClick="confirmInput"
-        android:text="Register"
+        android:text="@string/register"
         app:iconTint="#9E9E9E"
         app:layout_constraintEnd_toEndOf="@+id/inputConfirmPassword"
         app:layout_constraintStart_toStartOf="@+id/inputConfirmPassword"

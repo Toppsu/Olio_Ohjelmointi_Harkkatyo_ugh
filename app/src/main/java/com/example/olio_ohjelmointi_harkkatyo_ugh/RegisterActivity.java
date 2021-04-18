@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText textInputEmail, textInputUsername, textInputPassword, textInputConfirmPassword;
+    PasswordChecker passwordChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +23,10 @@ public class RegisterActivity extends AppCompatActivity {
         textInputUsername = (EditText)findViewById(R.id.inputUsername);
         textInputPassword = (EditText)findViewById(R.id.inputPassword);
         textInputConfirmPassword = (EditText)findViewById(R.id.inputConfirmPassword);
-    }
 
-    private static final Pattern PASSWORD_PATTERN =
-            Pattern.compile("^" +
-                    "(?=.*[0-9])" +         //at least 1 digit
-                    "(?=.*[a-z])" +         //at least 1 lower case letter
-                    "(?=.*[A-Z])" +         //at least 1 upper case letter
-                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
-                    "(?=\\S+$)" +           //no white spaces
-                    ".{12,}" +               //at least 12 characters
-                    "$");
+        passwordChecker = new PasswordChecker();
+
+
 
     private boolean validateEmail(){                                            //Checks the email address
         String emailInput = textInputEmail.getText().toString();
@@ -56,15 +50,11 @@ public class RegisterActivity extends AppCompatActivity {
         String passwordInput = textInputPassword.getText().toString().trim();
         String passwordConfirmInput = textInputConfirmPassword.getText().toString().trim();
 
-        if (passwordInput.isEmpty()){
+        if (passwordInput.isEmpty()) {
             textInputEmail.setError("Field can't be empty");
             return false;
-        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            textInputPassword.setError("Password doesn't fulfill the requirements");    //There could be more specific info on what is missing
-            return false;
-        } else if (passwordInput != passwordConfirmInput){
-            textInputConfirmPassword.setError("Passwords don't match");
-            return false;
+        }else if(passwordChecker.validatePassword(passwordInput)==true){
+            return true;
         } else {
             textInputConfirmPassword.setError(null);
             textInputPassword.setError(null);
