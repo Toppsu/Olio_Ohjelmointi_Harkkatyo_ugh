@@ -37,16 +37,13 @@ public class MealConstructor extends AppCompatActivity {
 
         if (json != null) {
             try {
-                JSONArray jsonArray = new JSONArray(json);
-                for (int i=0; i<jsonArray.length(); i++) {
-                    JSONObject jobject = jsonArray.getJSONObject(i);
-                    System.out.println("#######"+ (i+1) +"########");
-                    System.out.println(jobject.getString("Name"));
-                    System.out.println(jobject.getDouble("energyKcal"));
-                    System.out.println(jobject.getDouble("fat"));
-                    System.out.println(jobject.getDouble("protein"));
-                    System.out.println(jobject.getDouble("carbohydrate"));
-                }
+                JSONObject jobject = new JSONObject(json);
+                System.out.println("####### RUOKAINFO ########");
+                System.out.println(jobject.getString("unit"));
+                System.out.println(jobject.getDouble("energyKcal"));
+                System.out.println(jobject.getDouble("fat"));
+                System.out.println(jobject.getDouble("protein"));
+                System.out.println(jobject.getDouble("carbohydrate"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
