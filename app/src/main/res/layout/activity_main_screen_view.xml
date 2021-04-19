@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".mainScreenView">
+    tools:context=".MainScreenView">
 
     <Button
         android:id="@+id/workoutButton"
@@ -38,36 +38,73 @@
 
     <TextView
         android:id="@+id/calories"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="Kalorit"
-        android:layout_below="@+id/dateString"/>
+        android:layout_below="@+id/calorieProgress"/>
 
     <TextView
         android:id="@+id/fat"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="Rasvaa"
-        android:layout_below="@+id/dateString"
+        android:layout_below="@+id/calorieProgress"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@id/calories"/>
 
     <TextView
         android:id="@+id/carbohydrates"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="Hiilarit"
-        android:layout_below="@+id/dateString"
+        android:layout_below="@+id/calorieProgress"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@id/fat"/>
 
     <TextView
         android:id="@+id/protein"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="Roheiini"
-        android:layout_below="@+id/dateString"
+        android:layout_below="@+id/calorieProgress"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@id/carbohydrates"/>
+
+    <ProgressBar
+        android:id="@+id/calorieProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/dateString" />
+
+    <ProgressBar
+        android:id="@+id/fatProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/dateString"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@id/calorieProgress"
+        />
+
+    <ProgressBar
+        android:id="@+id/carbohydrateProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/dateString"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@id/fatProgress"
+        />
+
+    <ProgressBar
+        android:id="@+id/proteinProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/dateString"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@id/carbohydrateProgress"
+        />
 
 </RelativeLayout>
