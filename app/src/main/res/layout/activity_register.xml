@@ -61,7 +61,7 @@
         android:layout_marginTop="64dp"
         android:background="#9E9E9E"
         android:backgroundTint="#9E9E9E"
-        android:onClick="confirmInput"
+        android:onClick="register"
         android:text="@string/register"
         app:iconTint="#9E9E9E"
         app:layout_constraintEnd_toEndOf="@+id/inputConfirmPassword"

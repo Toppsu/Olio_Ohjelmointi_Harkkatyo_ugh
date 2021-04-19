@@ -7,11 +7,16 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText textInputEmail, textInputUsername, textInputPassword, textInputConfirmPassword;
+    EditText textInputEmail;
+    EditText textInputUsername;
+    EditText textInputPassword;
+    EditText textInputConfirmPassword;
     PasswordChecker passwordChecker;
 
     @Override
@@ -19,16 +24,44 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        textInputEmail = (EditText)findViewById(R.id.inputEmail);
-        textInputUsername = (EditText)findViewById(R.id.inputUsername);
-        textInputPassword = (EditText)findViewById(R.id.inputPassword);
-        textInputConfirmPassword = (EditText)findViewById(R.id.inputConfirmPassword);
+        textInputEmail = (EditText) findViewById(R.id.inputEmail);
+        textInputUsername = (EditText) findViewById(R.id.inputUsername);
+        textInputPassword = (EditText) findViewById(R.id.inputPassword);
+        textInputConfirmPassword = (EditText) findViewById(R.id.inputConfirmPassword);
 
         passwordChecker = new PasswordChecker();
+    }
 
 
+    public void register(View v){
 
-    private boolean validateEmail(){                                            //Checks the email address
+
+        if (validateEmail() & validatePassword() & validateUsername()){
+
+            byte[] salt = new byte[0];
+            try {
+                salt = passwordChecker.newSalt();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (NoSuchProviderException e) {
+                e.printStackTrace();
+            }
+            String pw = textInputPassword.getText().toString();
+            String securePassword = PasswordChecker.getSecurePassword(pw, salt);
+            String username = textInputUsername.getText().toString();
+            String email = textInputEmail.getText().toString();
+
+            User newUser = new User (username, email, securePassword, salt);
+
+            //TODO create new user
+            //TODO message that registration was complete
+            //TODO move to login page?
+
+        }
+    }
+
+        //Checks if the e-mail address is OK
+    private boolean validateEmail(){
         String emailInput = textInputEmail.getText().toString();
 
         if (emailInput.isEmpty()) {                                             //Checks if the field is empty
@@ -41,32 +74,44 @@ public class RegisterActivity extends AppCompatActivity {
             textInputEmail.setError(null);
             return true;
         }
-
-        //THIS SHOULD CHECK (FROM A DATABASE) IF THE EMAIL ADDRESS IS ALREADY USED FOR SOME OTHER ACCOUNT
-
+        //TODO THIS SHOULD CHECK (FROM A DATABASE) IF THE EMAIL ADDRESS IS ALREADY USED FOR SOME OTHER ACCOUNT
     }
 
-    private boolean validatePassword(){                                         //Checks that password fulfills the requirements
+
+        //Checks if the password is OK
+    private boolean validatePassword() {
         String passwordInput = textInputPassword.getText().toString().trim();
         String passwordConfirmInput = textInputConfirmPassword.getText().toString().trim();
 
-        if (passwordInput.isEmpty()) {
-            textInputEmail.setError("Field can't be empty");
-            return false;
-        }else if(passwordChecker.validatePassword(passwordInput)==true){
-            return true;
-        } else {
+        //Password passes the check
+        if (passwordChecker.validatePassword(passwordInput) & passwordChecker.checkPassword(passwordInput, passwordConfirmInput)) {
             textInputConfirmPassword.setError(null);
             textInputPassword.setError(null);
             return true;
+
+        // Error messages for invalid passwords
+        } else {
+            if (passwordInput.isEmpty()) {
+                textInputPassword.setError("Field can't be empty");
+                return false;
+            }
+
+            if (!passwordChecker.checkPassword(passwordInput, passwordConfirmInput)) {
+                textInputConfirmPassword.setError("Passwords don't match");
+                return false;
+            } else {
+                textInputPassword.setError(getString(R.string.password_requirements));
+                return false;
+            }
         }
     }
 
-    public void confirmInput(View v){
-        if (!validateEmail() | validatePassword()){
-            return;
-        }
+    private boolean validateUsername(){
+        String usernameInput = textInputUsername.getText().toString();
 
+        //TODO Check if the username is already in use
+
+        return true;
     }
 
 }
