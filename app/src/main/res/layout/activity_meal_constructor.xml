@@ -7,9 +7,28 @@
     tools:context=".MealConstructor">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/RuokaValmis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="47dp"
+        android:text="Valmis" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="readJSON"
         android:text="Button" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="298dp"
+        android:layout_height="640dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="150dp" />
 </RelativeLayout>
