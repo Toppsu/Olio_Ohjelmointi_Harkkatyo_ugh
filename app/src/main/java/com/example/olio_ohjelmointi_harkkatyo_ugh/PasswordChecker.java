@@ -1,5 +1,6 @@
 package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
@@ -39,13 +40,32 @@ public class PasswordChecker {
         }
     }
 
+
     public static String getSecurePassword(String password, byte[] salt){
         String securePassword = null;
-
-        //TODO Hash the password
-
+        try {
+            // Create MessageDigest instance for SHA-512
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            //Add password bytes to digest
+            md.update(salt);
+            //Get the hash's bytes
+            byte[] bytes = md.digest(password.getBytes());
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            securePassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         return securePassword;
     }
+
 
     //Add salt
     public byte[] newSalt() throws NoSuchAlgorithmException, NoSuchProviderException {

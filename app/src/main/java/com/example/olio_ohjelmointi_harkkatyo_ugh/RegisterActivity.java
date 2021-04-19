@@ -32,9 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordChecker = new PasswordChecker();
     }
 
-
     public void register(View v){
-
 
         if (validateEmail() & validatePassword() & validateUsername()){
 
