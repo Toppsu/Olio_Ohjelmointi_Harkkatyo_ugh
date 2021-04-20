@@ -41,14 +41,12 @@ public class MealConstructor extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listview);
 
 
- /*  KOMMENTOITU POIS TESTAAMISTA VARTEN -Elmeri
-
         InputStream inputStream = getResources().openRawResource(R.raw.foodnames);
 
         Scanner scanner = new Scanner(inputStream);
         ArrayList<String> ruokalista = new ArrayList<>();
         while(scanner.hasNextLine()) {
-            ruokalista.add(scanner.nextLine()/*.split(",")[1]);
+            ruokalista.add(scanner.nextLine()/*.split(",")[1]*/);
         }
         scanner.close();
 
@@ -57,7 +55,7 @@ public class MealConstructor extends AppCompatActivity {
         for(int i = 0; i < ruokalista.size(); i++) {
             System.out.print(ruokalista.get(i));
         }
-*/
+
     }
 
     public void readJSON(View v) {
