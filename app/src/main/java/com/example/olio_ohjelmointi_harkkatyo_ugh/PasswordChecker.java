@@ -41,6 +41,7 @@ public class PasswordChecker {
     }
 
 
+    //Hash and salt the password
     public static String getSecurePassword(String password, byte[] salt){
         String securePassword = null;
         try {
