@@ -2,6 +2,7 @@ package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -54,6 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
             //TODO create new user
             //TODO message that registration was complete
             //TODO move to login page?
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         }
     }
