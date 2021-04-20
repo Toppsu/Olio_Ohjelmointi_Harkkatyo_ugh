@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.olio_ohjelmointi_harkkatyo_ugh">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -10,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Olio_Ohjelmointi_Harkkatyo_ugh">
-        <activity android:name=".MealConstructor"></activity>
+        <activity android:name=".WorkoutActivity"></activity>
+        <activity android:name=".MealConstructor" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".mainScreenView" />
         <activity android:name=".MainActivity">
