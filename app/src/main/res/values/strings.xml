@@ -9,4 +9,7 @@
     <string name="add_meal">Add meal</string>
     <string name="register">Register</string>
     <string name="password_requirements">Password must be at least 12 characters long, contain at least 1 lower case letter, 1 UPPER CASE letter, 1 number and 1 special character</string>
+    <string name="IOException">Faulty input</string>
+    <string name="FileNotFound">File Not Found</string>
+    <string name="invalid_credentials">Invalid username or password</string>
 </resources>

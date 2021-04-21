@@ -1,6 +1,8 @@
 package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String username, email, password;
     private byte[] salt;
 
