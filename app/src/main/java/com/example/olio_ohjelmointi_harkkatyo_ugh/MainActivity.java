@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     private TextInputLayout usernameInput;
     private TextInputLayout passwordInput;
-    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+    DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
     PasswordChecker passwordChecker = new PasswordChecker();
 
     Context context = null;
@@ -31,16 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = MainActivity.this;
 
-        System.out.println("HELLO "+context);
-
         usernameInput = (TextInputLayout) findViewById(R.id.username);
         passwordInput = (TextInputLayout) findViewById(R.id.password);
         register = findViewById(R.id.signButton);
         login = findViewById(R.id.loginButton);
-
-        Context context = MainActivity.this;
-        System.out.println(context.getFilesDir());
-        System.out.println("HELLO");
     }
 
     public void openRegisterActivity(View v){
@@ -78,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         } else {
+
             User user = databaseHelper.findUser(username);
 
             if (user != null){
@@ -89,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             } else {
-                Toast.makeText(this, R.string.invalid_credentials, Toast.LENGTH_SHORT);
+                Toast.makeText(this, /*R.string.invalid_credentials */ "Invalid credentials", Toast.LENGTH_LONG).show();
             }
             //findUser
             //Validate user inputs

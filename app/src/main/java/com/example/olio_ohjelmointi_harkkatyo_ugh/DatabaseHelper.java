@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,23 +67,16 @@ public class DatabaseHelper extends AppCompatActivity {
         return response;
     }
 
-    public boolean testi(){
-        return true;
-    }
-
 
     public boolean addUser(User user){
-        System.out.println(super.toString());
-        System.out.println("HELLO");
-
-        String filename = "users.json";
+        String filename = user.getUsername() + ".json";
+        System.out.println(filename);
         Gson gson = new Gson();
         String s = gson.toJson(user);
-        FileOutputStream fos = null;
         try{
-            fos = context.openFileOutput(filename, Context.MODE_APPEND);
-            fos.write(s.getBytes());
-            fos.close();
+            OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
+            ows.write(s);
+            ows.close();
             return true;
         } catch (FileNotFoundException e) {
             Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
@@ -95,33 +89,29 @@ public class DatabaseHelper extends AppCompatActivity {
 
     }
 
-    public User findUser(String username){
+    public User findUser(String username) {
         User user = null;
+        System.out.println("Etsitään käyttäjää");
 
         Gson gson = new Gson();
-        String json = getJSON("users.json");
-        String name = "";
+        String json = getJSON(username + ".json");
 
-        if (json != null){
+        if (json != null) {
             try {
-                JSONArray jsonArray = new JSONArray(json);
-                for (int i =0; i<jsonArray.length(); i++){
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    name = jsonObject.getString("username");
-                    System.out.println(username);
-                    if (name.equals(username)){
-                        user = gson.fromJson(json, User.class);
+                JSONObject jsonObject = new JSONObject(json);
+                user = gson.fromJson(json, User.class);
+                if (user.getUsername().equals(username)) {
+                    user = gson.fromJson(json, User.class);
 
-                        System.out.println(user);
-                        //TODO create new User
-                    }
+                    System.out.println(user);
+                    //TODO create new User
                 }
-            } catch (JSONException e){
+
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
-
+        System.out.println(user);
         return user;
     }
 
