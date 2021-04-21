@@ -12,14 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="307dp"
-        android:layout_marginBottom="405dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:onClick="valmis_valinta"
         android:text="Valmis" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/Ruoka1"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@+id/searchFilter"
         android:onClick="readJSON"
         android:text="Button" />
 
@@ -27,25 +32,25 @@
         android:id="@+id/searchFilter"
         android:layout_width="242dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/Ruoka1"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="11dp" />
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="271dp"
-        android:layout_height="578dp"
-        android:layout_below="@+id/searchFilter"
+        android:layout_width="match_parent"
+        android:layout_height="405dp"
+        android:layout_above="@+id/RuokaValmis"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="100dp" />
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="2dp" />
 
     <TextView
         android:id="@+id/Ruoka1"
-        android:layout_width="117dp"
-        android:layout_height="51dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="155dp"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_above="@+id/listview"
+        android:layout_marginBottom="10dp"
         android:text="TextView" />
 </RelativeLayout>

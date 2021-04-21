@@ -2,6 +2,7 @@ package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.StrictMode;
@@ -39,16 +40,24 @@ public class MealConstructor extends AppCompatActivity {
 
     ArrayAdapter arrayAdapter;
 
+    public String valittu_ruoka = "pekoni";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_constructor);
+        /* Setting strict mode*/
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        /* Activity_meal_mainscreenistä tuleva ja sinne menevä ruokanimi */
+        int ruoan_nappi_id = getIntent().getIntExtra("ruoka_tavara", 420);
+        System.out.println("Valittu ruoka printti = " + valittu_ruoka);
+
+
         /* Finding listView and EditText*/
-        TextView TextView = (TextView) findViewById(R.id.Ruoka1);
+        TextView textView = (TextView) findViewById(R.id.Ruoka1);
         ListView listView = (ListView) findViewById(R.id.listview);
         EditText ruokafilter = (EditText) findViewById(R.id.searchFilter);
 
@@ -92,66 +101,36 @@ public class MealConstructor extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            TextView.setText(ruokalista.get(position));
+            textView.setText(ruokalista.get(position));
+            valittu_ruoka = ruokalista.get(position);
+                System.out.println("Valittu ruoka uudestaan (valinta valittu) " + valittu_ruoka);
 
             }
         });
 
 
     }
+
+
         /* Read the JSON and outputs nutritional values*/
     public void readJSON(View v) {
         int id = 123;
-        String json = getJSON(id);
-        System.out.println("JSON: " + json);
+        /*String json = FineliAPI.getJSON(id);*/
+        /*System.out.println("JSON: " + json);*/
+        ArrayList<String> ruokainfo = new ArrayList<>(FineliAPI.readJSON(id));
 
-        if (json != null) {
-            try {
-                JSONObject jobject = new JSONObject(json);
-                JSONObject jobjectRuokanimi = new JSONObject(jobject.getString("name"));
-                System.out.println("####### RUOKAINFO ########");
-                System.out.println(jobject.getString("unit"));
-                System.out.println(jobjectRuokanimi.getString("fi"));
-                System.out.println(jobject.getDouble("energyKcal"));
-                System.out.println(jobject.getDouble("fat"));
-                System.out.println(jobject.getDouble("protein"));
-                System.out.println(jobject.getDouble("carbohydrate"));
-
-                for(int i = 0; i < ruokalista.size(); i++) {
-                    System.out.print(ruokalista.get(i));
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
+        for (int i = 0; i < ruokainfo.size();i++)
+        {
+            System.out.println(ruokainfo.get(i));
         }
-
     }
-    /* Fethces the JSON from fineli API*/
-    public String getJSON (int id) {
-        String response = null;
-        try {
-            URL url = new URL("https://fineli.fi/fineli/api/v1/foods/" + id);
-            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-            response = sb.toString();
-            in.close();
 
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return response;
+    public void valmis_valinta(View v) {
+
+        Intent intent = new Intent();
+        intent.putExtra("123", valittu_ruoka);
+        setResult(RESULT_OK, intent);
+        finish();
     }
+
 }
