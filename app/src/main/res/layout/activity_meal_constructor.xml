@@ -8,12 +8,12 @@
 
     <Button
         android:id="@+id/RuokaValmis"
-        android:layout_width="wrap_content"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginEnd="307dp"
+        android:layout_marginBottom="405dp"
         android:text="Valmis" />
 
     <Button
@@ -23,12 +23,29 @@
         android:onClick="readJSON"
         android:text="Button" />
 
+    <EditText
+        android:id="@+id/searchFilter"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
+
     <ListView
         android:id="@+id/listview"
-        android:layout_width="298dp"
-        android:layout_height="640dp"
+        android:layout_width="271dp"
+        android:layout_height="578dp"
+        android:layout_below="@+id/searchFilter"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="150dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="100dp" />
+
+    <TextView
+        android:id="@+id/Ruoka1"
+        android:layout_width="117dp"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="155dp"
+        android:text="TextView" />
 </RelativeLayout>
