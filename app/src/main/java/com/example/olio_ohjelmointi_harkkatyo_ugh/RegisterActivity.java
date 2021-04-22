@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
             String pw = textInputPassword.getText().toString();
             String securePassword = PasswordChecker.getSecurePassword(pw, salt);
 
-
             String username = textInputUsername.getText().toString();
             String email = textInputEmail.getText().toString();
 
@@ -132,11 +131,34 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validateUsername(){
         String usernameInput = textInputUsername.getText().toString();
+        boolean isValid = false;
 
-        //TODO Check if the username is already in use
-        //TODO Check if the username is suitable [a-z, A-Z, 0-9]
-
-        return true;
+        //Checks if the username is already taken
+        if(databaseHelper.findUser(usernameInput)== null){
+            //Checks if the username fulfills the requirements
+            if (USERNAME_PATTERN.matcher(usernameInput).matches()) {
+                textInputUsername.setError(null);
+                isValid = true;
+            } else{
+                Toast.makeText(this, R.string.username_requirements, Toast.LENGTH_LONG).show();
+                textInputUsername.setError(getString(R.string.username_requirements));
+            }
+        } else {
+            Toast.makeText(this, "That username is already taken", Toast.LENGTH_LONG).show();
+            textInputUsername.setError("That username is already taken");
+        }
+        return isValid;
     }
+
+    //Username requirements
+    private static final Pattern USERNAME_PATTERN =
+            Pattern.compile("^" +
+                    "([0-9])" +             //may contain digits
+                    "([a-z])" +             //may contain lower case letters
+                    "([A-Z])" +             //may contain upper case letters
+                    "([_-])" +              //may contain '_' or '-'
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{3,}" +               //at least 3 characters
+                    "$");
 
 }

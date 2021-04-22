@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Logged in as "+user.getUsername());
                     Intent intent = new Intent(this, MainScreenView.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(this, /*R.string.invalid_credentials */ "Invalid credentials", Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(this, /*R.string.invalid_credentials */ "Invalid credentials", Toast.LENGTH_LONG).show();

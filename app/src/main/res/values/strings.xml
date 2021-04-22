@@ -12,4 +12,5 @@
     <string name="IOException">Faulty input</string>
     <string name="FileNotFound">File Not Found</string>
     <string name="invalid_credentials">Invalid username or password</string>
+    <string name="username_requirements">Username must be at least 3 characters long and contain only alphanumeric characters</string>
 </resources>

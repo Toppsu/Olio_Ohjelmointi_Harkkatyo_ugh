@@ -89,6 +89,71 @@ public class DatabaseHelper extends AppCompatActivity {
 
     }
 
+    //TODO paremman tiedon tallennuksen kokeilua
+    /*
+
+    public boolean addUser2(User user){
+        String filename = "users.json";
+        System.out.println(filename);
+        Gson gson = new Gson();
+        String s = gson.toJson(user);
+        String json = getJSON(filename);
+        try{
+            JSONArray jsonArray = new JSONArray(json);
+
+
+
+            OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_APPEND));
+            ows.write(s);
+            ows.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
+            return false;
+
+        } catch (IOException e) {
+            Log.e("IOException", String.valueOf(R.string.IOException));
+            return false;
+        }
+
+    }
+
+    public User findUser2(String username) {
+        User user = null;
+        System.out.println("Etsitään käyttäjää");
+
+        Gson gson = new Gson();
+        String json = getJSON("users.json");
+
+        if (json != null) {
+            try {
+                String [] users = json.split("}");
+                for(String u:users){
+                    System.out.println(u);
+                }
+
+
+                JSONObject jsonObject = new JSONObject(json);
+                user = gson.fromJson(json, User.class);
+                if (user.getUsername().equals(username)) {
+                    user = gson.fromJson(json, User.class);
+
+                    System.out.println(user);
+                    //TODO create new User
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(user);
+        return user;
+    }
+
+
+
+     */
+
     public User findUser(String username) {
         User user = null;
         System.out.println("Etsitään käyttäjää");
