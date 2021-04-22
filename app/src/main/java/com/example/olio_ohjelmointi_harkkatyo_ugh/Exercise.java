@@ -2,11 +2,11 @@ package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
 public class Exercise {
 
-    private String name;
+    private String name, sets, reps, weights;
 
-    private int sets, reps, weights, ID;
+    private int ID;
 
-    public Exercise(String name, int sets, int reps, int weights, int ID){
+    public Exercise(String name, String sets, String reps, String weights, int ID){
         this.name = name;
         this.sets = sets;
         this.reps = reps;
@@ -18,15 +18,15 @@ public class Exercise {
         return name;
     }
 
-    public int getSets() {
+    public String getSets() {
         return sets;
     }
 
-    public int getReps() {
+    public String getReps() {
         return reps;
     }
 
-    public int getWeights() {
+    public String getWeights() {
         return weights;
     }
 
@@ -38,15 +38,15 @@ public class Exercise {
         this.name = name;
     }
 
-    public void setSets(int sets) {
+    public void setSets(String sets) {
         this.sets = sets;
     }
 
-    public void setReps(int reps) {
+    public void setReps(String reps) {
         this.reps = reps;
     }
 
-    public void setWeights(int weights) {
+    public void setWeights(String weights) {
         this.weights = weights;
     }
 
