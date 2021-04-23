@@ -16,6 +16,9 @@ import com.google.android.material.textfield.TextInputLayout;
 public class MainActivity extends AppCompatActivity {
     private Button register;
     private Button login;
+    private Button reeninappula;
+    private Button paaruutuun;
+
     private TextInputLayout usernameInput;
     private TextInputLayout passwordInput;
     DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
@@ -35,7 +38,36 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = (TextInputLayout) findViewById(R.id.password);
         register = findViewById(R.id.signButton);
         login = findViewById(R.id.loginButton);
+        reeninappula = (Button) findViewById(R.id.reeniNappula);
+        paaruutuun = (Button) findViewById(R.id.paaruutuun);
+
+        reeninappula.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWorkoutActivity();
+            }
+        });
+
+        paaruutuun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMainScreenView();
+            }
+        });
+
     }
+
+    private void openMainScreenView() {
+        Intent intent = new Intent(this,MainScreenView.class);
+        startActivity(intent);
+    }
+
+
+    public void openWorkoutActivity(){
+        Intent intent = new Intent(this,WorkoutActivity.class);
+        startActivity(intent);
+    }
+
 
     public void openRegisterActivity(View v){
         Intent intent = new Intent(this, RegisterActivity.class);
