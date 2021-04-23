@@ -45,14 +45,14 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
         Exercise currentItem = mExerciseArrayList.get(position);
         holder.exerciseTextView.setText(currentItem.getName());
+        holder.setsTextView.setText(currentItem.getSets());
+        holder.repsTextView.setText(currentItem.getReps());
+        holder.weightsTextView.setText(currentItem.getWeights());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mExerciseArrayList.size();
     }
-
-
-
 
 }

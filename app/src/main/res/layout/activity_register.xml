@@ -65,6 +65,7 @@
         android:text="@string/register"
         app:iconTint="#9E9E9E"
         app:layout_constraintEnd_toEndOf="@+id/inputConfirmPassword"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/inputConfirmPassword"
         app:layout_constraintTop_toBottomOf="@+id/inputConfirmPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
