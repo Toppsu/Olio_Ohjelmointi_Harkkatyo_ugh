@@ -154,10 +154,10 @@ public class RegisterActivity extends AppCompatActivity {
     //Username requirements
     private static final Pattern USERNAME_PATTERN =
             Pattern.compile("^" +
-                    "([0-9])" +             //may contain digits
-                    "([a-z])" +             //may contain lower case letters
-                    "([A-Z])" +             //may contain upper case letters
-                    "([_-])" +              //may contain '_' or '-'
+                    "([0-9]*)" +             //may contain digits
+                    "([a-z]*)" +             //may contain lower case letters
+                    "([A-Z]*)" +             //may contain upper case letters
+                    "([_-]*)" +              //may contain '_' or '-'
                     "(?=\\S+$)" +           //no white spaces
                     ".{3,}" +               //at least 3 characters
                     "$");
