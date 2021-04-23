@@ -23,6 +23,48 @@ public class WorkoutActivity extends AppCompatActivity {
 
         ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
         exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+
+
 
         workoutRecyclerView = findViewById(R.id.workoutRecyclerView);
         //workoutRecyclerView.setHasFixedSize(true);
