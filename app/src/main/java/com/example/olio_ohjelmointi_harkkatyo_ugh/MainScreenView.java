@@ -20,28 +20,14 @@ public class MainScreenView extends AppCompatActivity {
         workoutButton = (Button) findViewById(R.id.reeniNappula);
         mealButton = (Button) findViewById(R.id.mealButton);
 
-        workoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWorkoutActivity();
-            }
-        });
-
-        mealButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMealActivity();
-            }
-        });
-
     }
 
-    private void openMealActivity() {
+    private void openMealActivity(View v) {
         Intent intent = new Intent(this,MealActivity.class);
         startActivity(intent);
     }
 
-    private void openWorkoutActivity() {
+    private void openWorkoutActivity(View v) {
         Intent intent = new Intent(this,WorkoutActivity.class);
         startActivity(intent);
     }
