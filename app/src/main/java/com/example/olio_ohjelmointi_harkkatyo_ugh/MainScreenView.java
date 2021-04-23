@@ -27,7 +27,7 @@ public class MainScreenView extends AppCompatActivity {
             }
         });
 
-        workoutButton.setOnClickListener(new View.OnClickListener() {
+        mealButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMealActivity();

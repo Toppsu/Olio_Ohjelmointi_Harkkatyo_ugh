@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         context = RegisterActivity.this;
 
         textInputEmail = (EditText) findViewById(R.id.inputEmail);
+
         textInputUsername = (EditText) findViewById(R.id.inputUsername);
         textInputPassword = (EditText) findViewById(R.id.inputPassword);
         textInputConfirmPassword = (EditText) findViewById(R.id.inputConfirmPassword);
