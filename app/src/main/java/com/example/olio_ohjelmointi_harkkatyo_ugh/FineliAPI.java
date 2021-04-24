@@ -19,7 +19,7 @@ public class FineliAPI {
 
 
 
-    public static ArrayList readJSON(int givenID) {
+    public static ArrayList readJSON(int givenID) {  //TODO TEE TÄSTÄ ASYCN TASK TAI VASTAAVA, NYT SKIPPAILEE KOKOAJAN FRAMEJA
         int id = 4;
         id = givenID;
         String json = getJSON(id);
