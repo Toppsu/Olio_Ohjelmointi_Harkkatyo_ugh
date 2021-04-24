@@ -27,12 +27,12 @@ public class MealActivity implements Serializable {
     float Proteiini = 0;
     float Ruokamaara = 0;
 
-    public MealActivity(String ruoka, float Kcal, float fat, float carbo, float protein, float maara) {
-        Ruoka = ruoka; //TODO LISÄÄ RUOAN YKSIKKO (gramma/litra)
+    public MealActivity(float carbo, float Kcal, float protein, float fat, String ruoka, float maara) {
+        Hiilarit = carbo; //TODO LISÄÄ RUOAN YKSIKKO (gramma/litra)
         Kalorit = Kcal;
-        Rasva = fat;
-        Hiilarit = carbo;
         Proteiini = protein;
+        Rasva = fat;
+        Ruoka = ruoka;
         Ruokamaara = maara;
     }
 }

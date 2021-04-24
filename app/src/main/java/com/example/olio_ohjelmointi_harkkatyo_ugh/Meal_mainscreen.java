@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -42,6 +43,9 @@ public class Meal_mainscreen extends AppCompatActivity {
         setContentView(R.layout.activity_meal_mainscreen);
         context = Meal_mainscreen.this;
 
+        EditText ruokamaara1_yksikko = (EditText) findViewById(R.id.ruoka2maara);
+        EditText ruokamaara2_yksikko = (EditText) findViewById(R.id.ruoka2maara);
+        EditText ruokamaara3_yksikko = (EditText) findViewById(R.id.ruoka3maara);
     }
 
     /* Kun lisätään ruoka, mennään mealConstructoriin */
@@ -76,6 +80,10 @@ public class Meal_mainscreen extends AppCompatActivity {
                 String[] ruokanumero1_name = ruokanumero1.split("\\t");
                 textView1 = (TextView) findViewById(R.id.food1text);
                 textView1.setText(ruokanumero1_name[1]);
+
+                /*EditText ruokamaara1_yksikko = (EditText) findViewById(R.id.ruoka1maara);
+                ruokamaara1_yksikko.setText(FineliAPI.readJSON(Integer.parseInt(ruokanumero1_name[0])).get(5).toString());*/
+
             }
         }
         if (requestCode == 12) {
@@ -105,59 +113,72 @@ public class Meal_mainscreen extends AppCompatActivity {
             String[] parts = ruokanumero1.split("\\t");
             String ruoka1_id = parts[0];
             String ruoka1_nimi = parts[1];
+            EditText ruoka1grammat = (EditText) findViewById(R.id.ruoka1maara);
+            int grammat = Integer.parseInt(ruoka1grammat.getText().toString());
             ArrayList<String> ruokanumero1arraylist = FineliAPI.readJSON(Integer.parseInt(ruoka1_id));
             for (int i = 0; i < ruokanumero1arraylist.size(); i++) {
                 System.out.println(ruokanumero1arraylist.get(i));
             }
             MealActivity ruokanumero1_olio
-                    = new MealActivity(ruoka1_nimi
+                    = new MealActivity(Float.parseFloat(ruokanumero1arraylist.get(0))
                     , Float.parseFloat(ruokanumero1arraylist.get(1))
                     , Float.parseFloat(ruokanumero1arraylist.get(2))
                     , Float.parseFloat(ruokanumero1arraylist.get(3))
-                    , Float.parseFloat(ruokanumero1arraylist.get(4))
-                    ,100);
+                    , ruoka1_nimi
+                    ,grammat);
             ruokailu.add(ruokanumero1_olio);
         }
         if (ruokanumero2 != null) {
             String[] parts = ruokanumero2.split("\\t");
             String ruoka2_id = parts[0];
             String ruoka2_nimi = parts[1];
+            EditText ruoka2grammat = (EditText) findViewById(R.id.ruoka2maara);
+            int grammat = Integer.parseInt(ruoka2grammat.getText().toString());
             ArrayList<String> ruokanumero2arraylist = FineliAPI.readJSON(Integer.parseInt(ruoka2_id));
             for (int i = 0; i < ruokanumero2arraylist.size(); i++) {
                 System.out.println(ruokanumero2arraylist.get(i));
             }
             MealActivity ruokanumero2_olio
-                    = new MealActivity(ruoka2_nimi
+                    = new MealActivity(Float.parseFloat(ruokanumero2arraylist.get(0))
                     , Float.parseFloat(ruokanumero2arraylist.get(1))
                     , Float.parseFloat(ruokanumero2arraylist.get(2))
                     , Float.parseFloat(ruokanumero2arraylist.get(3))
-                    , Float.parseFloat(ruokanumero2arraylist.get(4))
-                    ,100);
+                    , ruoka2_nimi
+                    ,grammat);
             ruokailu.add(ruokanumero2_olio);
         }
         if (ruokanumero3 != null) {
             String[] parts = ruokanumero3.split("\\t");
             String ruoka3_id = parts[0];
             String ruoka3_nimi = parts[1];
+            EditText ruoka3grammat = (EditText) findViewById(R.id.ruoka3maara);
+            int grammat = Integer.parseInt(ruoka3grammat.getText().toString());
             ArrayList<String> ruokanumero3arraylist = FineliAPI.readJSON(Integer.parseInt(ruoka3_id));
             for (int i = 0; i < ruokanumero3arraylist.size(); i++) {
                 System.out.println(ruokanumero3arraylist.get(i));
             }
             MealActivity ruokanumero3_olio
-                    = new MealActivity(ruoka3_nimi
+                    = new MealActivity(Float.parseFloat(ruokanumero3arraylist.get(0))
                     , Float.parseFloat(ruokanumero3arraylist.get(1))
                     , Float.parseFloat(ruokanumero3arraylist.get(2))
                     , Float.parseFloat(ruokanumero3arraylist.get(3))
-                    , Float.parseFloat(ruokanumero3arraylist.get(4))
-                    ,100);
+                    , ruoka3_nimi
+                    ,grammat);
             ruokailu.add(ruokanumero3_olio);
         }
         TallennaRuokailu(ruokailu);
     }
 
+    public String GetRuokailuNimi () {
+        EditText ruokailunnimi = (EditText) findViewById(R.id.RuokailunNimi);
+        String nimi = ruokailunnimi.getText().toString();
+        return nimi;
+    }
+
     public void TallennaRuokailu(ArrayList ruokailu) {
         if (ruokailu != null) {
-            String filename = "Ruokailu " + Calendar.getInstance().getTime() + ".json";
+            String nimi = GetRuokailuNimi();
+            String filename = nimi + " " + Calendar.getInstance().getTime() + ".json";
             System.out.println(filename);
             Gson gson = new Gson();
             String s = gson.toJson(ruokailu);
