@@ -77,6 +77,7 @@ public class DatabaseHelper extends AppCompatActivity {
             OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
             ows.write(s);
             ows.close();
+            System.out.println(context.getFilesDir().getAbsolutePath());
             return true;
         } catch (FileNotFoundException e) {
             Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
@@ -93,11 +94,10 @@ public class DatabaseHelper extends AppCompatActivity {
     /*
 
     public boolean addUser2(User user){
-        String filename = "users.json";
-        System.out.println(filename);
         Gson gson = new Gson();
-        String s = gson.toJson(user);
+        String filename = "users.json";
         String json = getJSON(filename);
+        String s = gson.toJson(user);
         try{
             JSONArray jsonArray = new JSONArray(json);
 

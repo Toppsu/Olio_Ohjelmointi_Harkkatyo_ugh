@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Arrays;
@@ -17,10 +19,10 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText textInputEmail;
-    EditText textInputUsername;
-    EditText textInputPassword;
-    EditText textInputConfirmPassword;
+    TextInputLayout textInputEmail;
+    TextInputLayout textInputUsername;
+    TextInputLayout textInputPassword;
+    TextInputLayout textInputConfirmPassword;
     PasswordChecker passwordChecker;
 
     DatabaseHelper databaseHelper;
@@ -32,11 +34,11 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         context = RegisterActivity.this;
 
-        textInputEmail = (EditText) findViewById(R.id.inputEmail);
+        textInputEmail = (TextInputLayout) findViewById(R.id.text_input_email);
 
-        textInputUsername = (EditText) findViewById(R.id.inputUsername);
-        textInputPassword = (EditText) findViewById(R.id.inputPassword);
-        textInputConfirmPassword = (EditText) findViewById(R.id.inputConfirmPassword);
+        textInputUsername = (TextInputLayout) findViewById(R.id.text_input_username);
+        textInputPassword = (TextInputLayout) findViewById(R.id.text_input_password);
+        textInputConfirmPassword = (TextInputLayout) findViewById(R.id.text_input_confirm_password);
 
         passwordChecker = new PasswordChecker();
         databaseHelper = new DatabaseHelper(this);
@@ -57,11 +59,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             //Hash and salt the password
-            String pw = textInputPassword.getText().toString();
+            String pw = textInputPassword.getEditText().getText().toString();
             String securePassword = PasswordChecker.getSecurePassword(pw, salt);
 
-            String username = textInputUsername.getText().toString();
-            String email = textInputEmail.getText().toString();
+            String username = textInputUsername.getEditText().getText().toString();
+            String email = textInputEmail.getEditText().getText().toString();
 
             //Generate new user
             User newUser = new User (username, email, securePassword, salt);
@@ -83,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Checks if the e-mail address is OK
     private boolean validateEmail(){
-        String emailInput = textInputEmail.getText().toString();
+        String emailInput = textInputEmail.getEditText().getText().toString();
 
         if (emailInput.isEmpty()) {                                             //Checks if the field is empty
             textInputEmail.setError("Field can't be empty");
@@ -104,8 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Checks if the password is OK
     private boolean validatePassword() {
-        String passwordInput = textInputPassword.getText().toString().trim();
-        String passwordConfirmInput = textInputConfirmPassword.getText().toString().trim();
+        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        String passwordConfirmInput = textInputConfirmPassword.getEditText().getText().toString().trim();
 
         //Password passes the check
         if (passwordChecker.validatePassword(passwordInput) & passwordChecker.checkPassword(passwordInput, passwordConfirmInput)) {
@@ -131,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validateUsername(){
-        String usernameInput = textInputUsername.getText().toString();
+        String usernameInput = textInputUsername.getEditText().getText().toString();
         boolean isValid = false;
 
         //Checks if the username is already taken
