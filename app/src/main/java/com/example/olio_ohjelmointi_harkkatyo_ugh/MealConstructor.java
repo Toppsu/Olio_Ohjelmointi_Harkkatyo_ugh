@@ -41,7 +41,7 @@ public class MealConstructor extends AppCompatActivity {
     ArrayAdapter arrayAdapter;
 
     public String valittu_ruoka = "pekoni";
-
+    public int ruoan_nappi_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MealConstructor extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         /* Activity_meal_mainscreenistä tuleva ja sinne menevä ruokanimi */
-        int ruoan_nappi_id = getIntent().getIntExtra("ruoka_tavara", 420);
+        ruoan_nappi_id = getIntent().getIntExtra("ruoka_tavara", 420);
         System.out.println("Valittu ruoka printti = " + valittu_ruoka);
 
 
@@ -62,7 +62,7 @@ public class MealConstructor extends AppCompatActivity {
         EditText ruokafilter = (EditText) findViewById(R.id.searchFilter);
 
         /* Opening inputstream from raw folder to get foodnames (File is from https://fineli.fi/fineli/content/file/47)*/
-        InputStream inputStream = getResources().openRawResource(R.raw.foodnames);
+        InputStream inputStream = getResources().openRawResource(R.raw.foodnames); //TODO DOES NOT PICK RIGHT ITEM IF SEARCED
         Scanner scanner = new Scanner(inputStream);
 
         /* Appending foodnames.txt content to ruokalista arraylist*/
@@ -101,7 +101,10 @@ public class MealConstructor extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            textView.setText(ruokalista.get(position));
+            String[] onitemclickruokanimi = ruokalista.get(position).split("\\t");
+            String textviewruokaid = onitemclickruokanimi[0];
+            String textviewruokanimi = onitemclickruokanimi[1];
+            textView.setText(textviewruokanimi);
             valittu_ruoka = ruokalista.get(position);
                 System.out.println("Valittu ruoka uudestaan (valinta valittu) " + valittu_ruoka);
 
@@ -127,10 +130,26 @@ public class MealConstructor extends AppCompatActivity {
 
     public void valmis_valinta(View v) {
 
+    if (ruoan_nappi_id == 1) {
+        Intent intent = new Intent();
+        intent.putExtra("1", valittu_ruoka);
+        setResult(RESULT_OK, intent);
+        finish();
+        }
+
+    if (ruoan_nappi_id == 2) {
+        Intent intent = new Intent();
+        intent.putExtra("12", valittu_ruoka);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    if (ruoan_nappi_id == 3) {
         Intent intent = new Intent();
         intent.putExtra("123", valittu_ruoka);
         setResult(RESULT_OK, intent);
         finish();
+        }
     }
 
 }

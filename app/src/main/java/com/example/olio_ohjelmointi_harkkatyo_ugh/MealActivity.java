@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,16 +18,21 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MealActivity {
+public class MealActivity implements Serializable {
 
-    private Date paivamaara = null;
+    String Ruoka = null;
+    float Kalorit = 0;
+    float Rasva = 0;
+    float Hiilarit = 0;
+    float Proteiini = 0;
+    float Ruokamaara = 0;
 
-    public MealActivity() {
-        paivamaara = Calendar.getInstance().getTime();
-        ArrayList<String> Ruokalista = new ArrayList<>();
-        ArrayList<Float> Kalorit = new ArrayList<>();
-        ArrayList<Float> Rasva = new ArrayList<>();
-        ArrayList<Float> Hiilarit = new ArrayList<>();
-        ArrayList<Float> Proteiini = new ArrayList<>();
+    public MealActivity(float carbo, float Kcal, float protein, float fat, String ruoka, float maara) {
+        Hiilarit = carbo; //TODO LISÄÄ RUOAN YKSIKKO (gramma/litra)
+        Kalorit = Kcal;
+        Proteiini = protein;
+        Rasva = fat;
+        Ruoka = ruoka;
+        Ruokamaara = maara;
     }
 }

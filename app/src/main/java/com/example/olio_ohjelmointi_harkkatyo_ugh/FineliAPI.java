@@ -19,7 +19,7 @@ public class FineliAPI {
 
 
 
-    public static ArrayList readJSON(int givenID) {
+    public static ArrayList readJSON(int givenID) {  //TODO TEE TÄSTÄ ASYCN TASK TAI VASTAAVA, NYT SKIPPAILEE KOKOAJAN FRAMEJA
         int id = 4;
         id = givenID;
         String json = getJSON(id);
@@ -32,16 +32,17 @@ public class FineliAPI {
                 JSONObject jobjectRuokanimi = new JSONObject(jobject.getString("name"));
                 System.out.println("####### RUOKAINFO ########");
                 System.out.println(jobject.getString("unit"));
-                System.out.println(jobjectRuokanimi.getString("fi"));
-                ateria.add(jobjectRuokanimi.getString("fi"));
-                System.out.println(jobject.getDouble("energyKcal"));
-                ateria.add(jobject.getString("energyKcal"));
-                System.out.println(jobject.getDouble("fat"));
-                ateria.add(jobject.getString("fat"));
-                System.out.println(jobject.getDouble("protein"));
-                ateria.add(jobject.getString("protein"));
                 System.out.println(jobject.getDouble("carbohydrate"));
+                System.out.println(jobject.getDouble("energyKcal"));
+                System.out.println(jobject.getDouble("protein"));
+                System.out.println(jobject.getDouble("fat"));
+                System.out.println(jobjectRuokanimi.getString("fi"));
                 ateria.add(jobject.getString("carbohydrate"));
+                ateria.add(jobject.getString("energyKcal"));
+                ateria.add(jobject.getString("protein"));
+                ateria.add(jobject.getString("fat"));
+                ateria.add(jobjectRuokanimi.getString("fi"));
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
