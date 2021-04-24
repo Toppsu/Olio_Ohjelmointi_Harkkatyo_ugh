@@ -152,7 +152,7 @@ public class Meal_mainscreen extends AppCompatActivity {
             String ruoka3_id = parts[0];
             String ruoka3_nimi = parts[1];
             EditText ruoka3grammat = (EditText) findViewById(R.id.ruoka3maara);
-            int grammat = Integer.parseInt(ruoka3grammat.getText().toString());
+            int grammat = Integer.parseInt(ruoka3grammat.getText().toString()); //TODO MAKE ERROR IF WEIGHT EMPTY
             ArrayList<String> ruokanumero3arraylist = FineliAPI.readJSON(Integer.parseInt(ruoka3_id));
             for (int i = 0; i < ruokanumero3arraylist.size(); i++) {
                 System.out.println(ruokanumero3arraylist.get(i));

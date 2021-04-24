@@ -42,7 +42,6 @@ public class FineliAPI {
                 ateria.add(jobject.getString("protein"));
                 ateria.add(jobject.getString("fat"));
                 ateria.add(jobjectRuokanimi.getString("fi"));
-                ateria.add(jobject.getString("unit"));
 
 
             } catch (JSONException e) {
