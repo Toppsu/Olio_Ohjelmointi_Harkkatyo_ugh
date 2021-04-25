@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public class Workout {
 
-    private ArrayList<Exercise> exerciseArrayList;
+    ArrayList<Exercise> exerciseArrayList = new ArrayList<Exercise>();
 
 }

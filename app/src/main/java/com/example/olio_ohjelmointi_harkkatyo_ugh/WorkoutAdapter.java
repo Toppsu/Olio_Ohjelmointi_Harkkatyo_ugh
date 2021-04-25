@@ -15,17 +15,21 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     private ArrayList<Exercise> mExerciseArrayList;
 
     public static class WorkoutViewHolder extends RecyclerView.ViewHolder{
+
         public TextView exerciseTextView;
         public TextView setsTextView;
         public TextView repsTextView;
         public TextView weightsTextView;
+        public TextView positionTextView;
 
         public WorkoutViewHolder(@NonNull View itemView) {
             super(itemView);
+
             exerciseTextView = itemView.findViewById(R.id.exerciseName);
             setsTextView = itemView.findViewById(R.id.sets);
             repsTextView = itemView.findViewById(R.id.reps);
             weightsTextView = itemView.findViewById(R.id.weights);
+            positionTextView = itemView.findViewById(R.id.position);
         }
     }
 
@@ -47,7 +51,8 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         holder.exerciseTextView.setText(currentItem.getName());
         holder.setsTextView.setText(currentItem.getSets());
         holder.repsTextView.setText(currentItem.getReps());
-        holder.weightsTextView.setText(currentItem.getWeights());
+        holder.weightsTextView.setText(currentItem.getWeights()+"kg");
+        holder.positionTextView.setText(String.valueOf(position+1)+".");
     }
 
     @Override

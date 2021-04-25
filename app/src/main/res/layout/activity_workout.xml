@@ -9,11 +9,62 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workoutRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="4dp"
-        android:scrollbars="vertical"
+        android:layout_height="500dp"
         android:background="@android:color/darker_gray"
-        />
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/workoutRecyclerView"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="Add"
+        android:layout_alignParentEnd="true"/>
+
+    <EditText
+        android:id="@+id/editExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Exercise"
+        android:inputType="text"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:layout_below="@+id/workoutRecyclerView"/>
+
+    <EditText
+        android:id="@+id/editSets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/workoutRecyclerView"
+        android:layout_toEndOf="@+id/editExercise"
+        android:hint="Sets"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/editReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Reps"
+        android:inputType="number"
+        android:singleLine="true"
+        android:layout_below="@+id/workoutRecyclerView"
+        android:imeOptions="actionNext"
+        android:layout_toEndOf="@+id/editSets" />
+
+    <EditText
+        android:id="@+id/editWeights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Weights"
+        android:inputType="number"
+        android:singleLine="true"
+        android:layout_below="@+id/workoutRecyclerView"
+        android:imeOptions="actionDone"
+        android:layout_toEndOf="@+id/editReps"/>
 
 
 
