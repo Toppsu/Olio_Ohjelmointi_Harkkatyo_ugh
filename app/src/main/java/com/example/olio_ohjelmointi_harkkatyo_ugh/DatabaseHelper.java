@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,29 +23,43 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends AppCompatActivity {
 
     Context context;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    List<User> userArray = new ArrayList<>();
+    Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
     DatabaseHelper(Context context){
         this.context = context;
     }
 
-    public void readJSON(String file){
-        String json = getJSON(file);
-        System.out.println("JSON: "+json);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
 
+    public void readJSON(String file){
+        String json = getJSON(file);
+        Gson gson = new Gson();
+
+        if (json != null) {
+            System.out.println("Hei"+json);
+            userArray = gson.fromJson(json, userListType);
+            System.out.println(userArray);
+        } else {
+
+        }
+    }
+
+
+    //Returns a JSON file as a string
     public String getJSON(String file){
-        String response = null;
+        String json = null;
         try{
             InputStream ins = context.openFileInput(file);
 
@@ -55,7 +70,7 @@ public class DatabaseHelper extends AppCompatActivity {
             while ((line=br.readLine()) != null){
                 sb.append(line).append("\n");
             }
-            response = sb.toString();
+            json = sb.toString();
             ins.close();
 
         } catch (FileNotFoundException e) {
@@ -64,15 +79,20 @@ public class DatabaseHelper extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("IOException", String.valueOf(R.string.IOException));
         }
-        return response;
+        return json;
     }
 
 
     public boolean addUser(User user){
-        String filename = user.getUsername() + ".json";
-        System.out.println(filename);
+
+        //Adds user to the userArray
+        userArray.add(user);
+        String filename = "userlist.json";
+
+        //Adds user to the userlist.json
         Gson gson = new Gson();
-        String s = gson.toJson(user);
+        String s = gson.toJson(userArray);
+        System.out.println(s);
         try{
             OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
             ows.write(s);
@@ -90,94 +110,42 @@ public class DatabaseHelper extends AppCompatActivity {
 
     }
 
-    //TODO paremman tiedon tallennuksen kokeilua
-    /*
-
-    public boolean addUser2(User user){
-        Gson gson = new Gson();
-        String filename = "users.json";
-        String json = getJSON(filename);
-        String s = gson.toJson(user);
-        try{
-            JSONArray jsonArray = new JSONArray(json);
-
-
-
-            OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_APPEND));
-            ows.write(s);
-            ows.close();
-            return true;
-        } catch (FileNotFoundException e) {
-            Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
-            return false;
-
-        } catch (IOException e) {
-            Log.e("IOException", String.valueOf(R.string.IOException));
-            return false;
-        }
-
-    }
-
-    public User findUser2(String username) {
-        User user = null;
-        System.out.println("Etsitään käyttäjää");
-
-        Gson gson = new Gson();
-        String json = getJSON("users.json");
-
-        if (json != null) {
-            try {
-                String [] users = json.split("}");
-                for(String u:users){
-                    System.out.println(u);
-                }
-
-
-                JSONObject jsonObject = new JSONObject(json);
-                user = gson.fromJson(json, User.class);
-                if (user.getUsername().equals(username)) {
-                    user = gson.fromJson(json, User.class);
-
-                    System.out.println(user);
-                    //TODO create new User
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(user);
-        return user;
-    }
-
-
-
-     */
-
     public User findUser(String username) {
-        User user = null;
         System.out.println("Etsitään käyttäjää");
+        User u = null;
 
-        Gson gson = new Gson();
-        String json = getJSON(username + ".json");
-
-        if (json != null) {
-            try {
-                JSONObject jsonObject = new JSONObject(json);
-                user = gson.fromJson(json, User.class);
-                if (user.getUsername().equals(username)) {
-                    user = gson.fromJson(json, User.class);
-
-                    System.out.println(user);
-                    //TODO create new User
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+        for (User user : userArray){
+            if (user.getUsername().matches(username)){
+                u = user;
             }
         }
-        System.out.println(user);
-        return user;
+        return u;
+    }
+
+
+    public boolean findUserName(String username) {
+        System.out.println("Etsitään käyttäjää");
+        boolean user_found = false;
+
+        for (User user : userArray){
+            if (user.getUsername().matches(username)){
+                user_found = true;
+            }
+        }
+        return user_found;
+    }
+
+
+    public boolean findUserEmail(String email) {
+        System.out.println("Etsitään käyttäjää");
+        boolean user_found = false;
+
+        for (User user : userArray){
+            if (user.getEmail().matches(email)){
+                user_found = true;
+            }
+        }
+        return user_found;
     }
 
 }

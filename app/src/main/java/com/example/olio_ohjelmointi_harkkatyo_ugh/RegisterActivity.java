@@ -46,7 +46,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View v){
 
-        if (validateEmail() & validatePassword() & validateUsername()){
+        String password = textInputPassword.getEditText().getText().toString().trim();
+        String confirmPassword = textInputConfirmPassword.getEditText().getText().toString().trim();
+        String username = textInputUsername.getEditText().getText().toString();
+        String email = textInputEmail.getEditText().getText().toString();
+
+        if (validateEmail(email) & validatePassword(password, confirmPassword) & validateUsername(username)){
 
             //Generate salt for the user
             byte[] salt = new byte[0];
@@ -59,20 +64,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             //Hash and salt the password
-            String pw = textInputPassword.getEditText().getText().toString();
-            String securePassword = PasswordChecker.getSecurePassword(pw, salt);
+            String securePassword = PasswordChecker.getSecurePassword(password, salt);
 
-            String username = textInputUsername.getEditText().getText().toString();
-            String email = textInputEmail.getEditText().getText().toString();
-
-            //Generate new user
+            //Generate and save new user
             User newUser = new User (username, email, securePassword, salt);
-            System.out.println(newUser.getEmail());
-            System.out.println(Arrays.toString(newUser.getSalt()));
-            System.out.println(newUser.getPassword());
-            System.out.println(newUser.getUsername());
-
-            //Save the new user
             boolean createUser = databaseHelper.addUser(newUser);
 
             if (createUser){
@@ -84,45 +79,44 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
         //Checks if the e-mail address is OK
-    private boolean validateEmail(){
-        String emailInput = textInputEmail.getEditText().getText().toString();
+    private boolean validateEmail(String email){
+        boolean isValid = false;
 
-        if (emailInput.isEmpty()) {                                             //Checks if the field is empty
+        if (email.isEmpty()) {                                             //Checks if the field is empty
             textInputEmail.setError("Field can't be empty");
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {     //Checks if the email address follows the guidelines / e-mail pattern
+
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {     //Checks if the email address follows the guidelines / e-mail pattern
             textInputEmail.setError("Enter a valid email address");
-            return false;
-        } else if (databaseHelper.findUser(emailInput) != null){                //Checks if the email address is already in use
+
+        } else if (databaseHelper.findUserEmail(email) == true){           //Checks if the email address is already in use
             textInputEmail.setError("E-mail address already in use");
-            return false;
-        }else {                                                                //Valid email, remove errors
+
+        }else {                                                            //Valid email, remove errors
             textInputEmail.setError(null);
-            return true;
+            isValid = true;
         }
-        //TODO THIS SHOULD CHECK (FROM A DATABASE) IF THE EMAIL ADDRESS IS ALREADY USED FOR SOME OTHER ACCOUNT
+
+        return isValid;
     }
 
 
         //Checks if the password is OK
-    private boolean validatePassword() {
-        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
-        String passwordConfirmInput = textInputConfirmPassword.getEditText().getText().toString().trim();
+    private boolean validatePassword(String password, String confirmPassword) {
 
         //Password passes the check
-        if (passwordChecker.validatePassword(passwordInput) & passwordChecker.checkPassword(passwordInput, passwordConfirmInput)) {
+        if (passwordChecker.validatePassword(password) & passwordChecker.checkPassword(password, confirmPassword)) {
             textInputConfirmPassword.setError(null);
             textInputPassword.setError(null);
             return true;
 
         // Error messages for invalid passwords
         } else {
-            if (passwordInput.isEmpty()) {
+            if (password.isEmpty()) {
                 textInputPassword.setError("Field can't be empty");
                 return false;
             }
 
-            if (!passwordChecker.checkPassword(passwordInput, passwordConfirmInput)) {
+            if (!passwordChecker.checkPassword(password, confirmPassword)) {
                 textInputConfirmPassword.setError("Passwords don't match");
                 return false;
             } else {
@@ -132,14 +126,13 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validateUsername(){
-        String usernameInput = textInputUsername.getEditText().getText().toString();
+    private boolean validateUsername(String username){
         boolean isValid = false;
 
         //Checks if the username is already taken
-        if(databaseHelper.findUser(usernameInput)== null){
+        if(databaseHelper.findUserName(username)== false){
             //Checks if the username fulfills the requirements
-            if (USERNAME_PATTERN.matcher(usernameInput).matches()) {
+            if (USERNAME_PATTERN.matcher(username).matches()) {
                 textInputUsername.setError(null);
                 isValid = true;
             } else{

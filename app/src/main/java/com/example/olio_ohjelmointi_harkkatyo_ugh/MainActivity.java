@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = MainActivity.this;
 
+        databaseHelper.readJSON("userlist.json");
+
         usernameInput = (TextInputLayout) findViewById(R.id.username);
         passwordInput = (TextInputLayout) findViewById(R.id.password);
         register = findViewById(R.id.signButton);
@@ -102,9 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-
         } else {
-
             User user = databaseHelper.findUser(username);
 
             if (user != null){
