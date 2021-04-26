@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class MainScreenView extends AppCompatActivity {
 
-    private Button workoutButton;
+    private Button strengthWorkoutButton;
+    private Button cardioWorkoutButton;
     private Button mealButton;
 
     @Override
@@ -17,7 +18,8 @@ public class MainScreenView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen_view);
 
-        workoutButton = (Button) findViewById(R.id.reeniNappula);
+        strengthWorkoutButton = (Button) findViewById(R.id.strengthWorkoutButton);
+        cardioWorkoutButton = (Button) findViewById(R.id.cardioWorkoutButton);
         mealButton = (Button) findViewById(R.id.mealButton);
 
     }

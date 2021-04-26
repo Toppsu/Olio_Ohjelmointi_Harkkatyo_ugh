@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CardioActivity">
+
+    <EditText
+        android:id="@+id/inputExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Exercise" />
+
+    <EditText
+        android:id="@+id/inputDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="Duration"
+        android:layout_below="@+id/inputExercise"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/cardioText"
+        style="@style/CardView"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/inputExercise"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/boxi"
+        android:text="Cardio Workout"
+        android:textSize="24sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/inputDuration"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

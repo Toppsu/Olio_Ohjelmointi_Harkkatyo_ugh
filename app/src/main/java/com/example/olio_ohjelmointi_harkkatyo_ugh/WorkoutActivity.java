@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -14,67 +19,59 @@ public class WorkoutActivity extends AppCompatActivity {
     private RecyclerView.Adapter workoutRecyclerViewAdapter;
     private RecyclerView.LayoutManager workoutLayoutManager;
 
+    private Button addWorkoutButton;
+    private String exerciseName,sets,reps,weights;
+    private String inputExercise,inputSets,inputReps,inputWeights;
+    private ArrayList<Exercise> exerciseArrayList;
+    private int ID;
+    private EditText mEditExercise;
+    private EditText mEditSets;
+    private EditText mEditReps;
+    private EditText mEditWeights;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        ID = 0;
         setContentView(R.layout.activity_workout);
+        createExerciseArrayList();
+        buildRecyclerView();
 
-        ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
-        exerciseArrayList.add(new Exercise("Liike","3","12","50", 1));
+        mEditExercise = (EditText) findViewById(R.id.editExercise);
+        mEditSets = (EditText) findViewById(R.id.editSets);
+        mEditReps = (EditText) findViewById(R.id.editReps);
+        mEditWeights = (EditText) findViewById(R.id.editWeights);
 
 
+        addWorkoutButton = (Button) findViewById(R.id.addButton);
+        addWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        workoutRecyclerView = findViewById(R.id.workoutRecyclerView);
-        //workoutRecyclerView.setHasFixedSize(true);
-        workoutLayoutManager = new LinearLayoutManager(this);
-        workoutRecyclerViewAdapter = new WorkoutAdapter(exerciseArrayList);
+                exerciseArrayList.add(new Exercise(mEditExercise.getText().toString(),mEditSets.getText().toString(),mEditReps.getText().toString(),mEditWeights.getText().toString(),ID));
+                ID = ID+1;
+            }
+        });
 
-        workoutRecyclerView.setLayoutManager(workoutLayoutManager);
-        workoutRecyclerView.setAdapter(workoutRecyclerViewAdapter);
     }
 
 
+
+
+
+    public void createExerciseArrayList(){
+        exerciseArrayList = new ArrayList<Exercise>();
+    }
+
+    public void buildRecyclerView(){
+        workoutRecyclerView = findViewById(R.id.workoutRecyclerView);
+        workoutRecyclerView.setHasFixedSize(true);
+        workoutLayoutManager = new LinearLayoutManager(this);
+        workoutRecyclerViewAdapter = new WorkoutAdapter(exerciseArrayList);
+        workoutRecyclerView.setLayoutManager(workoutLayoutManager);
+        workoutRecyclerView.setAdapter(workoutRecyclerViewAdapter);
+    }
 
 }

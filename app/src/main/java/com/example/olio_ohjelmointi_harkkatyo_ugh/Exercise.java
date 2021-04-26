@@ -30,9 +30,7 @@ public class Exercise {
         return weights;
     }
 
-    public int getID() {
-        return ID;
-    }
+    public int getID() { return ID; }
 
     public void setName(String name) {
         this.name = name;
@@ -53,4 +51,5 @@ public class Exercise {
     public void setID(int ID) {
         this.ID = ID;
     }
+
 }
