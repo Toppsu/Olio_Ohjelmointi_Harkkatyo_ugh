@@ -31,11 +31,11 @@ public class MainScreenView extends AppCompatActivity {
         Intent intent = new Intent(this,WorkoutActivity.class);
         startActivity(intent);
     }
-
+/*
     public void openMealHistory(View v) {
         Intent intent = new Intent(this,List_past_meals.class);
         startActivity(intent);
     }
-
+*/
 
 }

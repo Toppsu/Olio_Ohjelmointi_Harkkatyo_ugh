@@ -30,7 +30,8 @@ import java.util.List;
 public class DatabaseHelper extends AppCompatActivity {
 
     Context context;
-    List<User> userArray = new ArrayList<>();
+    DataHolder dataHolder = DataHolder.getInstance();
+
     Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
     DatabaseHelper(Context context){
         this.context = context;
@@ -49,8 +50,7 @@ public class DatabaseHelper extends AppCompatActivity {
 
         if (json != null) {
             System.out.println("Hei"+json);
-            userArray = gson.fromJson(json, userListType);
-            System.out.println(userArray);
+            dataHolder.userlist = gson.fromJson(json, userListType);
         } else {
 
         }
@@ -86,12 +86,12 @@ public class DatabaseHelper extends AppCompatActivity {
     public boolean addUser(User user){
 
         //Adds user to the userArray
-        userArray.add(user);
+        dataHolder.userlist.add(user);
         String filename = "userlist.json";
 
         //Adds user to the userlist.json
         Gson gson = new Gson();
-        String s = gson.toJson(userArray);
+        String s = gson.toJson(dataHolder.userlist);
         System.out.println(s);
         try{
             OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
@@ -114,7 +114,7 @@ public class DatabaseHelper extends AppCompatActivity {
         System.out.println("Etsitään käyttäjää");
         User u = null;
 
-        for (User user : userArray){
+        for (User user : dataHolder.userlist){
             if (user.getUsername().matches(username)){
                 u = user;
             }
@@ -127,11 +127,12 @@ public class DatabaseHelper extends AppCompatActivity {
         System.out.println("Etsitään käyttäjää");
         boolean user_found = false;
 
-        for (User user : userArray){
+        for (User user : dataHolder.userlist){
             if (user.getUsername().matches(username)){
                 user_found = true;
             }
         }
+
         return user_found;
     }
 
@@ -140,7 +141,7 @@ public class DatabaseHelper extends AppCompatActivity {
         System.out.println("Etsitään käyttäjää");
         boolean user_found = false;
 
-        for (User user : userArray){
+        for (User user : dataHolder.userlist){
             if (user.getEmail().matches(email)){
                 user_found = true;
             }
