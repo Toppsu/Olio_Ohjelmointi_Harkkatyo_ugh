@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             File path = context.getFilesDir();
             File f1 = new File(path+"/"+username);
+            f1.mkdirs();
 
 
             if (createUser && f1.mkdir()){

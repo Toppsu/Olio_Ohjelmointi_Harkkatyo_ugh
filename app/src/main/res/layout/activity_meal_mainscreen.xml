@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RuokailunNimi" />
+        app:layout_constraintTop_toBottomOf="@+id/MealName" />
 
     <TextView
         android:id="@+id/food2text"
@@ -90,7 +90,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:onClick="Button3press"
-        android:text="Lisää ruoka+"
+        android:text="Add food +"
         app:layout_constraintStart_toEndOf="@+id/food3text"
         app:layout_constraintTop_toBottomOf="@+id/ruoka3maara" />
 
@@ -115,7 +115,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:onClick="Button1press"
-        android:text="Lisää ruoka +"
+        android:text="Add food +"
         app:layout_constraintStart_toEndOf="@+id/food1text"
         app:layout_constraintTop_toBottomOf="@+id/ruoka1maara" />
 
@@ -126,7 +126,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:onClick="Button2press"
-        android:text="Lisää ruoka +"
+        android:text="Add food +"
         app:layout_constraintStart_toEndOf="@+id/food2text"
         app:layout_constraintTop_toBottomOf="@+id/ruoka2maara" />
 
@@ -137,7 +137,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="28dp"
         android:onClick="MealActivityReady"
-        android:text="Valmis"
+        android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -151,12 +151,12 @@
         app:layout_constraintTop_toTopOf="@+id/ruoka1maara" />
 
     <EditText
-        android:id="@+id/RuokailunNimi"
+        android:id="@+id/MealName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:ems="10"
-        android:hint="Ruokailun nimi"
+        android:hint="Meal Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/food1text"
         app:layout_constraintStart_toStartOf="@+id/food1text"

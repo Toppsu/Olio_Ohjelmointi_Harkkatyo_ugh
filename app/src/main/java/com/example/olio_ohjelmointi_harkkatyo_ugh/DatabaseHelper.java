@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -62,6 +63,31 @@ public class DatabaseHelper extends AppCompatActivity {
         String json = null;
         try{
             InputStream ins = context.openFileInput(file);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(ins));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+
+            while ((line=br.readLine()) != null){
+                sb.append(line).append("\n");
+            }
+            json = sb.toString();
+            ins.close();
+
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
+
+        } catch (IOException e) {
+            Log.e("IOException", String.valueOf(R.string.IOException));
+        }
+        return json;
+    }
+
+    //Returns a JSON file as a string using fileinputstreamer to get around a thing where you can't access some folders with inputstream. (Used in List_past_meals)
+    public String getJSON_wFileInputStreamer(String file){
+        String json = null;
+        try{
+            FileInputStream ins = new FileInputStream(new File(file));
 
             BufferedReader br = new BufferedReader(new InputStreamReader(ins));
             StringBuilder sb = new StringBuilder();
