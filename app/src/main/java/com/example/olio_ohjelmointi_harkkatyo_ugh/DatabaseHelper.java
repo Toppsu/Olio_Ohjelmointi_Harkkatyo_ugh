@@ -122,7 +122,7 @@ public class DatabaseHelper extends AppCompatActivity {
         return u;
     }
 
-
+    //Check if username is already in use
     public boolean findUserName(String username) {
         System.out.println("Etsitään käyttäjää");
         boolean user_found = false;
