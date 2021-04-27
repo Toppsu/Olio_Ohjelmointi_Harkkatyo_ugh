@@ -27,6 +27,7 @@ public class MainScreenView extends AppCompatActivity {
         cardioWorkoutButton = (Button) findViewById(R.id.cardioWorkoutButton);
         mealButton = (Button) findViewById(R.id.mealButton);
         userInfo = (Button) findViewById(R.id.userInfoButton);
+        Button weigthEntry = (Button) findViewById(R.id.addWeigth);
 
 
     }
@@ -43,6 +44,11 @@ public class MainScreenView extends AppCompatActivity {
 
     private void openWorkoutActivity(View v) {
         Intent intent = new Intent(this,WorkoutActivity.class);
+        startActivity(intent);
+    }
+
+    public void openWeigthEntry(View v) {
+        Intent intent = new Intent(this,WeigthEntry.class);
         startActivity(intent);
     }
 

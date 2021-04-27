@@ -49,6 +49,7 @@ public class UserInfo extends AppCompatActivity {
     public void saveChanges(View v){
         //Read input data
         dataHolder.currentUser.setEmail(email.getText().toString());
+        //TODO check the validity of the email adress
         dataHolder.currentUser.setHeigth(Integer.parseInt(heigth.getText().toString()));
         dataHolder.currentUser.setWeigth(Integer.parseInt(weigth.getText().toString()));
         dataHolder.currentUser.setYearOfBirth(Integer.parseInt(yearOfBirth.getText().toString()));
