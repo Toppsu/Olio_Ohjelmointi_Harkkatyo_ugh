@@ -62,7 +62,7 @@ public class MealConstructor extends AppCompatActivity {
         EditText ruokafilter = (EditText) findViewById(R.id.searchFilter);
 
         /* Opening inputstream from raw folder to get foodnames (File is from https://fineli.fi/fineli/content/file/47)*/
-        InputStream inputStream = getResources().openRawResource(R.raw.foodnames); //TODO DOES NOT PICK RIGHT ITEM IF SEARCED
+        InputStream inputStream = getResources().openRawResource(R.raw.foodnames); //TODO DOES NOT PICK RIGHT ITEM IF SEARCHED
         Scanner scanner = new Scanner(inputStream);
 
         /* Appending foodnames.txt content to ruokalista arraylist*/

@@ -17,17 +17,6 @@
         android:onClick="valmis_valinta"
         android:text="Valmis" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Ruoka1"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toStartOf="@+id/searchFilter"
-        android:onClick="readJSON"
-        android:text="Button" />
-
     <EditText
         android:id="@+id/searchFilter"
         android:layout_width="242dp"
@@ -35,7 +24,8 @@
         android:layout_above="@+id/Ruoka1"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="11dp" />
+        android:layout_marginBottom="11dp"
+        android:hint="Hae ruokia" />
 
     <ListView
         android:id="@+id/listview"
@@ -52,5 +42,6 @@
         android:layout_height="54dp"
         android:layout_above="@+id/listview"
         android:layout_marginBottom="10dp"
-        android:text="TextView" />
+        android:hint="Valittu ruoka"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 </RelativeLayout>

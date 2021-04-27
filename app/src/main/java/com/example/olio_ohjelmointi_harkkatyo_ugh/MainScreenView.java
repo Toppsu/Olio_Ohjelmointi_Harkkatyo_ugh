@@ -12,7 +12,6 @@ public class MainScreenView extends AppCompatActivity {
     private Button strengthWorkoutButton;
     private Button cardioWorkoutButton;
     private Button mealButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +20,6 @@ public class MainScreenView extends AppCompatActivity {
         strengthWorkoutButton = (Button) findViewById(R.id.strengthWorkoutButton);
         cardioWorkoutButton = (Button) findViewById(R.id.cardioWorkoutButton);
         mealButton = (Button) findViewById(R.id.mealButton);
-
     }
 
     private void openMealActivity(View v) {
@@ -31,6 +29,11 @@ public class MainScreenView extends AppCompatActivity {
 
     private void openWorkoutActivity(View v) {
         Intent intent = new Intent(this,WorkoutActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMealHistory(View v) {
+        Intent intent = new Intent(this,List_past_meals.class);
         startActivity(intent);
     }
 

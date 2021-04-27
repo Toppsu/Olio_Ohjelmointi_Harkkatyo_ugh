@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Olio_Ohjelmointi_Harkkatyo_ugh">
+        <activity android:name=".List_past_meals"></activity>
+        <activity android:name=".Meal_mainscreen" />
         <activity android:name=".CardioActivity" />
         <activity android:name=".TimedWorkoutActivity" />
         <activity android:name=".Meal_mainscreen" />
