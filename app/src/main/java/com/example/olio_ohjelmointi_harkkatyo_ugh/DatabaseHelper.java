@@ -50,7 +50,6 @@ public class DatabaseHelper extends AppCompatActivity {
         Gson gson = new Gson();
 
         if (json != null) {
-            System.out.println("Hei"+json);
             dataHolder.userlist = gson.fromJson(json, userListType);
         } else {
 
@@ -118,12 +117,10 @@ public class DatabaseHelper extends AppCompatActivity {
         //Adds user to the userlist.json
         Gson gson = new Gson();
         String s = gson.toJson(dataHolder.userlist);
-        System.out.println(s);
         try{
             OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
             ows.write(s);
             ows.close();
-            System.out.println(context.getFilesDir().getAbsolutePath());
             return true;
         } catch (FileNotFoundException e) {
             Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
@@ -137,7 +134,6 @@ public class DatabaseHelper extends AppCompatActivity {
     }
 
     public User findUser(String username) {
-        System.out.println("Etsitään käyttäjää");
         User u = null;
 
         for (User user : dataHolder.userlist){
@@ -148,9 +144,8 @@ public class DatabaseHelper extends AppCompatActivity {
         return u;
     }
 
-
+    //Check if username is already in use
     public boolean findUserName(String username) {
-        System.out.println("Etsitään käyttäjää");
         boolean user_found = false;
 
         for (User user : dataHolder.userlist){
@@ -164,7 +159,6 @@ public class DatabaseHelper extends AppCompatActivity {
 
 
     public boolean findUserEmail(String email) {
-        System.out.println("Etsitään käyttäjää");
         boolean user_found = false;
 
         for (User user : dataHolder.userlist){

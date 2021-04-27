@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
             File f1 = new File(path+"/"+username);
             f1.mkdirs();
 
-
+            //Create folder for user
             if (createUser && f1.mkdir()){
                 System.out.println("User created");
                 Intent intent = new Intent(this, MainActivity.class);
