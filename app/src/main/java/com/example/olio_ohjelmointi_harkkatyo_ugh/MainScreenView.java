@@ -31,6 +31,11 @@ public class MainScreenView extends AppCompatActivity {
 
     }
 
+    public void openUserInfoActivity(View v) {
+        Intent intent = new Intent(this,UserInfo.class);
+        startActivity(intent);
+    }
+
     private void openMealActivity(View v) {
         Intent intent = new Intent(this,MealActivity.class);
         startActivity(intent);
@@ -41,10 +46,6 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openUserInfoActivity(View v) {
-        Intent intent = new Intent(this,UserInfo.class);
-        startActivity(intent);
-    }
 /*
     public void openMealHistory(View v) {
         Intent intent = new Intent(this,List_past_meals.class);
