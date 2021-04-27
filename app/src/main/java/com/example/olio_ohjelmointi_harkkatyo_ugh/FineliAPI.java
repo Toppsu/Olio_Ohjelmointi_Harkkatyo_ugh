@@ -18,12 +18,12 @@ import javax.net.ssl.HttpsURLConnection;
 public class FineliAPI {
 
 
-
-    public static ArrayList readJSON(int givenID) {  //TODO TEE TÄSTÄ ASYCN TASK TAI VASTAAVA, NYT SKIPPAILEE KOKOAJAN FRAMEJA
+    /*Reads the json that getJSON fetches and makes an arraylist of its components.*/
+    public static ArrayList readJSON(int givenID) {
         int id = 4;
         id = givenID;
         String json = getJSON(id);
-        ArrayList<String> ateria = new ArrayList<>();
+        ArrayList<String> meal = new ArrayList<>();
         /*System.out.println("JSON: " + json);*/
 
         if (json != null) {
@@ -37,11 +37,11 @@ public class FineliAPI {
                 System.out.println(jobject.getDouble("protein"));
                 System.out.println(jobject.getDouble("fat"));
                 System.out.println(jobjectRuokanimi.getString("fi"));
-                ateria.add(jobject.getString("carbohydrate"));
-                ateria.add(jobject.getString("energyKcal"));
-                ateria.add(jobject.getString("protein"));
-                ateria.add(jobject.getString("fat"));
-                ateria.add(jobjectRuokanimi.getString("fi"));
+                meal.add(jobject.getString("carbohydrate"));
+                meal.add(jobject.getString("energyKcal"));
+                meal.add(jobject.getString("protein"));
+                meal.add(jobject.getString("fat"));
+                meal.add(jobjectRuokanimi.getString("fi"));
 
 
             } catch (JSONException e) {
@@ -49,7 +49,7 @@ public class FineliAPI {
             }
 
         }
-        return ateria;
+        return meal;
     }
 
     /* Fetches the JSON from fineli API*/

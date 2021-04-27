@@ -48,64 +48,61 @@ public class List_past_meals extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.MealHistoryListView);
 
-        File dir = getFilesDir();
-        pastmealnames = dir.list();
+        File path = getFilesDir();
+        System.out.println(path);
+        String userdir = path + "/" + DataHolder.getInstance().currentUser.getUsername() + "/Meals.json";
+        System.out.println(userdir);
+        String json = null;
 
-        for (String pastmealname : pastmealnames) {
-            System.out.println(pastmealname);
-            String json = null;
+        try {
+            json = dbhelp.getJSON_wFileInputStreamer(userdir);
+            System.out.println(json);
+            String[] jsonsplit = json.split("(?<=])");
+            for (String s : jsonsplit) {
+                String singlemeal = "";
+                JSONArray jarray = new JSONArray(s);
+                JSONObject jobjectgetime = jarray.getJSONObject(0);
+                String pvm = jobjectgetime.getString("pvm"); // In form "E dd-MM-yyyy HH:mm:ss" e.g "Tue 27-04-2021 14:41:15"
+                singlemeal = singlemeal + "Meal: " + pvm + "\n\n";
+                Double totKcal = 0.0;
+                Double totCarbo = 0.0;
+                Double totFat = 0.0;
+                Double totProt = 0.0;
+                for (int i=0; i<jarray.length(); i++) {
 
-            try {
+                    JSONObject jobject = jarray.getJSONObject(i);
 
-                json = dbhelp.getJSON(pastmealname);
-                System.out.println(json);
-                String[] jsonsplit = json.split("(?<=])");
-                for (String s : jsonsplit) {
-                    String yksittainenruokailu = "";
-                    JSONArray jarray = new JSONArray(s);
-                    JSONObject jobjectgetime = jarray.getJSONObject(0);
-                    String pvm = jobjectgetime.getString("pvm"); // In form "E dd-MM-yyyy HH:mm:ss" e.g "Tue 27-04-2021 14:41:15"
-                    yksittainenruokailu = yksittainenruokailu + "Ruokailu: " + pvm + "\n\n";
-                    Double totKcal = 0.0;
-                    Double totHiilari = 0.0;
-                    Double totRasva = 0.0;
-                    Double totProt = 0.0;
-                    for (int i=0; i<jarray.length(); i++) {
+                    int kerroin = (jobject.getInt("FoodAmount")/100);
 
-                        JSONObject jobject = jarray.getJSONObject(i);
-
-                        int kerroin = (jobject.getInt("Ruokamaara")/100);
-
-                        totKcal = totKcal + jobject.getDouble("Kalorit")*kerroin;
-                        totHiilari = totHiilari + jobject.getDouble("Hiilarit")*kerroin;
-                        totRasva = totRasva + jobject.getDouble("Proteiini")*kerroin;
-                        totProt = totProt + jobject.getDouble("Rasva")*kerroin;
+                    totKcal = totKcal + jobject.getDouble("Kalorit")*kerroin;
+                    totCarbo = totCarbo + jobject.getDouble("Carbohydrates")*kerroin;
+                    totFat = totFat + jobject.getDouble("Protein")*kerroin;
+                    totProt = totProt + jobject.getDouble("Fat")*kerroin;
 
 
-                        String k ="Ruoka: " + jobject.getString("Ruoka") + "\t\t" + jobject.getInt("Ruokamaara") + "g\n"
-                                + "Kcal: " + Math.round(jobject.getDouble("Kalorit")*kerroin) + "\n"
-                                + "Hiilarit: " + Math.round(jobject.getDouble("Hiilarit")*kerroin) + "g\t\t"
-                                + "Proteiini: " + Math.round(jobject.getDouble("Proteiini")*kerroin) + "g\t\t"
-                                + "Rasva: " + Math.round(jobject.getDouble("Rasva")*kerroin) + "g\n\n";
-                        yksittainenruokailu = yksittainenruokailu + k;
-
-                    }
-                    String total = "\nYhteensä:\nKcal: " + Math.round(totKcal) + "\tHiilarit: "
-                            + Math.round(totHiilari) + "g\tRasva: " + Math.round(totRasva)
-                            + "g\tProteiini: " + Math.round(totProt) + "g";
-                    yksittainenruokailu = yksittainenruokailu + total;
-                    pastmeals.add(yksittainenruokailu);
+                    String k ="Food: " + jobject.getString("Food") + "\t\t" + jobject.getInt("FoodAmount") + "g\n"
+                            + "Kcal: " + Math.round(jobject.getDouble("Kalorit")*kerroin) + "\n"
+                            + "Carbohydrates: " + Math.round(jobject.getDouble("Carbohydrates")*kerroin) + "g\t\t"
+                            + "Protein: " + Math.round(jobject.getDouble("Protein")*kerroin) + "g\t\t"
+                            + "Fat: " + Math.round(jobject.getDouble("Fat")*kerroin) + "g\n\n";
+                    singlemeal = singlemeal + k;
 
                 }
+                String total = "\nTotal:\nKcal: " + Math.round(totKcal) + "\tCarbohydrates: "
+                        + Math.round(totCarbo) + "g\tProtein: " + Math.round(totProt) +"g\tFat: " + Math.round(totFat) + "g\n";
+                singlemeal = singlemeal + total;
+                pastmeals.add(singlemeal);
 
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,pastmeals);
         listView.setAdapter(arrayAdapter);
     }
