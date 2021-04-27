@@ -5,6 +5,7 @@ import java.util.List;
 
 public class DataHolder {
     List<User> userlist = new ArrayList<>();
+    User currentUser;
 
     private DataHolder(){}
 

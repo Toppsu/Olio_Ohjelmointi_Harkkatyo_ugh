@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Context context = null;
 
     boolean isValid = false;
+    DataHolder dataHolder = DataHolder.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 String securePassword = passwordChecker.getSecurePassword(password, salt);
                 if (securePassword.matches(user.getPassword())){
                     System.out.println("Logged in as "+user.getUsername());
+                    dataHolder.currentUser = user;
                     Intent intent = new Intent(this, MainScreenView.class);
                     startActivity(intent);
                 } else {

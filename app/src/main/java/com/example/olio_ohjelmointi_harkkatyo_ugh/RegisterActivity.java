@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Arrays;
@@ -70,7 +71,11 @@ public class RegisterActivity extends AppCompatActivity {
             User newUser = new User (username, email, securePassword, salt);
             boolean createUser = databaseHelper.addUser(newUser);
 
-            if (createUser){
+            File path = context.getFilesDir();
+            File f1 = new File(path+"/"+username);
+
+
+            if (createUser && f1.mkdir()){
                 System.out.println("User created");
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
