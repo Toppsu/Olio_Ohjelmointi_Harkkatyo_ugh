@@ -17,30 +17,30 @@
         android:textColor="@color/black"
         app:strokeColor="#505050"
         app:strokeWidth="1dp" />
+
     <Button
         android:id="@+id/cardioWorkoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cardio Workout"
-        android:backgroundTint="#81D4FA"
-        android:textColor="@color/black"
-        app:strokeWidth="1dp"
-        app:strokeColor="#505050"
+        android:layout_below="@id/strengthWorkoutButton"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/strengthWorkoutButton"/>
+        android:backgroundTint="#81D4FA"
+        android:text="Cardio Workout"
+        android:textColor="@color/black"
+        app:strokeColor="#505050"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/mealButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_meal"
-        android:backgroundTint="#81D4FA"
-        android:textColor="@color/black"
-        app:strokeWidth="1dp"
-        app:strokeColor="#505050"
+        android:layout_below="@id/cardioWorkoutButton"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/cardioWorkoutButton"/>
-
+        android:backgroundTint="#81D4FA"
+        android:text="@string/add_meal"
+        android:textColor="@color/black"
+        app:strokeColor="#505050"
+        app:strokeWidth="1dp" />
 
 
     <Button
@@ -56,6 +56,21 @@
         app:strokeColor="#505050"
         app:strokeWidth="1dp" />
 
+    <Button
+        android:id="@+id/userInfoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mealButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="204dp"
+        android:backgroundTint="#81D4FA"
+        android:onClick="openUserInfoActivity"
+        android:text="User Info"
+        android:textColor="@color/black"
+        app:strokeColor="#505050"
+        app:strokeWidth="1dp" />
+
     <TextView
         android:id="@+id/dateString"
         android:layout_width="wrap_content"
@@ -66,35 +81,35 @@
         android:id="@+id/calories"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="Kalorit"
-        android:layout_below="@+id/calorieProgress"/>
+        android:layout_below="@+id/calorieProgress"
+        android:text="Kalorit" />
 
     <TextView
         android:id="@+id/fat"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="Rasvaa"
         android:layout_below="@+id/calorieProgress"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@id/calories"/>
+        android:layout_toEndOf="@id/calories"
+        android:text="Rasvaa" />
 
     <TextView
         android:id="@+id/carbohydrates"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="Hiilarit"
         android:layout_below="@+id/calorieProgress"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@id/fat"/>
+        android:layout_toEndOf="@id/fat"
+        android:text="Hiilarit" />
 
     <TextView
         android:id="@+id/protein"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="Roheiini"
         android:layout_below="@+id/calorieProgress"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@id/carbohydrates"/>
+        android:layout_toEndOf="@id/carbohydrates"
+        android:text="Roheiini" />
 
     <ProgressBar
         android:id="@+id/calorieProgress"
@@ -110,8 +125,7 @@
         android:layout_height="50dp"
         android:layout_below="@+id/dateString"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@id/calorieProgress"
-        />
+        android:layout_toEndOf="@id/calorieProgress" />
 
     <ProgressBar
         android:id="@+id/carbohydrateProgress"
@@ -120,8 +134,7 @@
         android:layout_height="50dp"
         android:layout_below="@+id/dateString"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@id/fatProgress"
-        />
+        android:layout_toEndOf="@id/fatProgress" />
 
     <ProgressBar
         android:id="@+id/proteinProgress"
@@ -130,7 +143,6 @@
         android:layout_height="50dp"
         android:layout_below="@+id/dateString"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@id/carbohydrateProgress"
-        />
+        android:layout_toEndOf="@id/carbohydrateProgress" />
 
 </RelativeLayout>

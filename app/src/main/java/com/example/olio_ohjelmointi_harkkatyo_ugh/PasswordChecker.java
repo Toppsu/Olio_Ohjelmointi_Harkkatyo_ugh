@@ -6,6 +6,7 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
+
 public class PasswordChecker {
 
 

@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,4 +144,39 @@ public class DatabaseHelper extends AppCompatActivity {
         return user_found;
     }
 
+
+    public boolean updateUser(User user){
+        List<User> temp = new ArrayList<User>();
+
+        //Copy current userlist and replace current user's data
+        for (User u : dataHolder.userlist){
+            if (u.getUsername().matches(user.getUsername())){
+                //Skip
+            }else{
+                temp.add(u);
+            }
+        }
+        temp.add(user);
+
+        dataHolder.userlist = temp;
+
+        //Rewrite userlist.json
+        String filename = "userlist.json";
+        Gson gson = new Gson();
+        String s = gson.toJson(temp);
+        try{
+            OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
+            ows.write(s);
+            ows.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFound", String.valueOf(R.string.FileNotFound));
+            return false;
+
+        } catch (IOException e) {
+            Log.e("IOException", String.valueOf(R.string.IOException));
+            return false;
+        }
+
+    }
 }

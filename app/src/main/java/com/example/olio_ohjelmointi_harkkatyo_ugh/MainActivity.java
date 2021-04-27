@@ -86,9 +86,6 @@ public class MainActivity extends AppCompatActivity {
         String username = usernameInput.getEditText().getText().toString();
         String password = passwordInput.getEditText().getText().toString();
 
-        //TODO tämä tulostaa konsoliin
-        System.out.println("User: "+username+"Pw: "+password);
-
         //Check if username of password -fields are empty
         if(username.isEmpty() || password.isEmpty()) {
 

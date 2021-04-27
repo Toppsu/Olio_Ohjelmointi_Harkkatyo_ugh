@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserInfo">
+
+    <TextView
+        android:id="@+id/profileInfoView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Profile info"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/emailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Email"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/profileInfoView"
+        app:layout_constraintTop_toBottomOf="@+id/profileInfoView" />
+
+    <TextView
+        android:id="@+id/emailShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/emailView"
+        app:layout_constraintStart_toEndOf="@+id/profileInfoView" />
+
+    <TextView
+        android:id="@+id/passwordView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Password"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/profileInfoView"
+        app:layout_constraintTop_toBottomOf="@+id/emailView" />
+
+    <TextView
+        android:id="@+id/heightView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Height (cm)"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/profileInfoView"
+        app:layout_constraintTop_toBottomOf="@+id/passwordView" />
+
+    <TextView
+        android:id="@+id/weigthView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Weigth (kg)"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/profileInfoView"
+        app:layout_constraintTop_toBottomOf="@+id/heightView" />
+
+    <TextView
+        android:id="@+id/birthYearView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Year of birth"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/profileInfoView"
+        app:layout_constraintTop_toBottomOf="@+id/weigthView" />
+
+    <Button
+        android:id="@+id/resetPw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resetPassword"
+        android:text="Reset password"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordView"
+        app:layout_constraintStart_toEndOf="@+id/profileInfoView"
+        app:layout_constraintTop_toTopOf="@+id/passwordView" />
+
+    <EditText
+        android:id="@+id/editHeigth"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/heightView"
+        app:layout_constraintStart_toEndOf="@+id/profileInfoView"
+        app:layout_constraintTop_toTopOf="@+id/heightView" />
+
+    <EditText
+        android:id="@+id/editWeigth"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/weigthView"
+        app:layout_constraintStart_toEndOf="@+id/profileInfoView"
+        app:layout_constraintTop_toTopOf="@+id/weigthView" />
+
+    <EditText
+        android:id="@+id/editYearOfBirth"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/birthYearView"
+        app:layout_constraintStart_toEndOf="@+id/profileInfoView"
+        app:layout_constraintTop_toTopOf="@+id/birthYearView" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:onClick="saveChanges"
+        android:text="Save changes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editYearOfBirth" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
