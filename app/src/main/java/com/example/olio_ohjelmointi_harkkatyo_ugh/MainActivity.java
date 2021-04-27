@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout usernameInput;
     private TextInputLayout passwordInput;
+    MealHistory mealhistory = new MealHistory();
     DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
     PasswordChecker passwordChecker = new PasswordChecker();
 
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 if (securePassword.matches(user.getPassword())){
                     System.out.println("Logged in as "+user.getUsername());
                     dataHolder.currentUser = user;
+                    dataHolder.MealHistoryArray = mealhistory.GetMealHistory(getFilesDir().toString());
                     Intent intent = new Intent(this, MainScreenView.class);
                     startActivity(intent);
                 } else {

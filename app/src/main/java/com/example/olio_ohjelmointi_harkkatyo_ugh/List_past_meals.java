@@ -33,8 +33,11 @@ import java.util.ArrayList;
 
 public class List_past_meals extends AppCompatActivity {
 
+    MealHistory mealhistory = new MealHistory();
+
     ArrayAdapter arrayAdapter;
     ArrayList<String> pastmeals = new ArrayList<>();
+
     String[] pastmealnames;
 
     Context context;
@@ -45,9 +48,10 @@ public class List_past_meals extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_past_meals);
-
+        pastmeals = DataHolder.getInstance().MealHistoryArray;
         ListView listView = (ListView) findViewById(R.id.MealHistoryListView);
 
+        /*
         File path = getFilesDir();
         System.out.println(path);
         String userdir = path + "/" + DataHolder.getInstance().currentUser.getUsername() + "/Meals.json";
@@ -102,7 +106,7 @@ public class List_past_meals extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        */
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,pastmeals);
         listView.setAdapter(arrayAdapter);
     }

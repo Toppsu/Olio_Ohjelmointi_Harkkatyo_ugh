@@ -37,6 +37,8 @@ public class Meal_mainscreen extends AppCompatActivity {
 
     DatabaseHelper dbhelp = new DatabaseHelper(Meal_mainscreen.this);
 
+    MealHistory mealh = new MealHistory();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,6 +207,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                 FileWriter filewriter = new FileWriter(ruokafilu,true);
                 filewriter.write(s);
                 filewriter.close();
+                DataHolder.getInstance().MealHistoryArray.addAll(mealh.SetArrayListforAdapter(s)); //TODO kusetussetti
                 System.out.println(getFilesDir());
                 Intent intent = new Intent(this,MainScreenView.class);
                 startActivity(intent);

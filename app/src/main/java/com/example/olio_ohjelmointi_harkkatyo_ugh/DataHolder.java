@@ -9,6 +9,8 @@ public class DataHolder {
     List<User> userlist = new ArrayList<>();
     User currentUser;
 
+    ArrayList<String> MealHistoryArray = new ArrayList<>();
+
     private DataHolder(){}
 
     static DataHolder getInstance(){
