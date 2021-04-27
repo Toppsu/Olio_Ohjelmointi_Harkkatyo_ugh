@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MealConstructor extends AppCompatActivity {
@@ -68,13 +69,19 @@ public class MealConstructor extends AppCompatActivity {
         scanner2.close();
 
 
+        /* Making a display list that contains only the names of food items*/
+        ArrayList<String> DisplayListEN = new ArrayList<>();
+        for (int i=0;i<FoodListEN.size();i++) {
+            DisplayListEN.add(FoodListEN.get(i).split("\\t")[1]);
+        }
+
         /*Checking size*/
         System.out.println(FoodListEN.size());
 
 
         /* Creating adapters for the listviews*/
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, FoodListFin);
-        arrayAdapterEN = new ArrayAdapter(this, android.R.layout.simple_list_item_1, FoodListEN);
+        arrayAdapterEN = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DisplayListEN);
 
         listView.setAdapter(arrayAdapterEN);
 
@@ -100,12 +107,34 @@ public class MealConstructor extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            String[] onitemclickruokanimi = FoodListEN.get(position).split("\\t");
-            String textviewruokaid = onitemclickruokanimi[0];
-            String textviewruokanimi = onitemclickruokanimi[1];
-            textView.setText(textviewruokanimi);
-            chosen_food = FoodListEN.get(position);
+                String onitemclickfoodname = parent.getItemAtPosition(position).toString();
+                textView.setText(onitemclickfoodname);
+
+                /*We must do this to get the real index of the item we want because adapterview position is false cos it only takes the searched lists position*/
+                int food_real_index = DisplayListEN.indexOf(parent.getItemAtPosition(position));
+                chosen_food = FoodListEN.get(food_real_index);
                 System.out.println("Valittu ruoka uudestaan (valinta valittu) " + chosen_food);
+
+                if (food_button_id == 1) {
+                    Intent intent = new Intent();
+                    intent.putExtra("1", chosen_food);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+
+                if (food_button_id == 2) {
+                    Intent intent = new Intent();
+                    intent.putExtra("12", chosen_food);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+
+                if (food_button_id == 3) {
+                    Intent intent = new Intent();
+                    intent.putExtra("123", chosen_food);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
 
             }
         });
