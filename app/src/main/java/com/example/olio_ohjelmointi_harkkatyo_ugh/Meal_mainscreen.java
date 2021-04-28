@@ -115,7 +115,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                 Toast.makeText(this, "Add food amount!", Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                int grammat = Integer.parseInt(food1grams.getText().toString());
+                int grammat1 = Integer.parseInt(food1grams.getText().toString());
                 ArrayList<String> foodnumber1arraylist = FineliAPI.readJSON(Integer.parseInt(food1_id));
                 for (int i = 0; i < foodnumber1arraylist.size(); i++) {
                     System.out.println(foodnumber1arraylist.get(i));
@@ -127,7 +127,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                         , Float.parseFloat(foodnumber1arraylist.get(2))
                         , Float.parseFloat(foodnumber1arraylist.get(3))
                         , food1_name
-                        , grammat);
+                        , grammat1);
                 ruokailu.add(foodnumber1object);
             }
         }
@@ -141,7 +141,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                 Toast.makeText(this, "Add food amount!", Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                int grammat = Integer.parseInt(food2grams.getText().toString());
+                int grammat2 = Integer.parseInt(food2grams.getText().toString());
                 ArrayList<String> foodnumber2arraylist = FineliAPI.readJSON(Integer.parseInt(food2_id));
                 for (int i = 0; i < foodnumber2arraylist.size(); i++) {
                     System.out.println(foodnumber2arraylist.get(i));
@@ -153,7 +153,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                         , Float.parseFloat(foodnumber2arraylist.get(2))
                         , Float.parseFloat(foodnumber2arraylist.get(3))
                         , food2_name
-                        , grammat);
+                        , grammat2);
                 ruokailu.add(foodnumber2object);
             }
         }
@@ -167,7 +167,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                 Toast.makeText(this, "Add food amount!", Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                int grammat = Integer.parseInt(food3grams.getText().toString());
+                int grammat3 = Integer.parseInt(food3grams.getText().toString());
                 ArrayList<String> foodnumber3arraylist = FineliAPI.readJSON(Integer.parseInt(food3_id));
                 for (int i = 0; i < foodnumber3arraylist.size(); i++) {
                     System.out.println(foodnumber3arraylist.get(i));
@@ -179,7 +179,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                         , Float.parseFloat(foodnumber3arraylist.get(2))
                         , Float.parseFloat(foodnumber3arraylist.get(3))
                         , food3_name
-                        , grammat);
+                        , grammat3);
                 ruokailu.add(foodnumber3object);
             }
         }
@@ -207,7 +207,8 @@ public class Meal_mainscreen extends AppCompatActivity {
                 FileWriter filewriter = new FileWriter(ruokafilu,true);
                 filewriter.write(s);
                 filewriter.close();
-                DataHolder.getInstance().MealHistoryArray.addAll(mealh.SetArrayListforAdapter(s)); //TODO kusetussetti
+                DataHolder.getInstance().mealjson = DataHolder.getInstance().mealjson + s;
+                DataHolder.getInstance().MealHistoryArray.addAll(mealh.SetArrayListforAdapter(s));
                 System.out.println(getFilesDir());
                 Intent intent = new Intent(this,MainScreenView.class);
                 startActivity(intent);
@@ -221,16 +222,5 @@ public class Meal_mainscreen extends AppCompatActivity {
     }
 }
 
-        /*ArrayList testi = FineliAPI.readJSON(123);
-        paivamaara
-        Ruokalista
-        Kalorit
-        Rasva
-        Hiilarit
-        Proteiini
-        MealActivity mealactivity = new MealActivity()
-        for (int i = 0; i < testi.size(); i++ ) {
-            System.out.println(testi.get(i));
-            */
 
 

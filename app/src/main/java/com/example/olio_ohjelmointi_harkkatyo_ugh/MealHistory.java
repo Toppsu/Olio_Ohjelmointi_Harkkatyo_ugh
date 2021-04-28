@@ -1,18 +1,16 @@
 package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MealHistory {
 
@@ -23,10 +21,14 @@ public class MealHistory {
 
     DatabaseHelper dbhelp = new DatabaseHelper(this.context);
 
+    DataHolder dataHolder = DataHolder.getInstance();
+
     public MealHistory() {
 
     }
 
+    /* This fetches the Meals.json from the current logged users folder and modifies it to a Arraylist
+     * This arraylist is in the form that it can be shown in the meal history activity. */
     public ArrayList<String> GetMealHistory(String userpath) {
 
         String path = userpath;
@@ -37,7 +39,9 @@ public class MealHistory {
         try {
             json = dbhelp.getJSON_wFileInputStreamer(userdir);
             System.out.println(json);
+            dataHolder.mealjson = json; // Appending the pure json form to be used in other applications.
             String[] jsonsplit = json.split("(?<=])");
+
             for (String s : jsonsplit) {
                 String singlemeal = "";
                 JSONArray jarray = new JSONArray(s);
@@ -52,19 +56,24 @@ public class MealHistory {
 
                     JSONObject jobject = jarray.getJSONObject(i);
 
-                    int kerroin = (jobject.getInt("FoodAmount") / 100);
+                    Double multiplier = (jobject.getDouble("FoodAmount") / 100);
 
-                    totKcal = totKcal + jobject.getDouble("Kalorit") * kerroin;
-                    totCarbo = totCarbo + jobject.getDouble("Carbohydrates") * kerroin;
-                    totFat = totFat + jobject.getDouble("Protein") * kerroin;
-                    totProt = totProt + jobject.getDouble("Fat") * kerroin;
+                    Double Kcal = jobject.getDouble("Kalorit") * multiplier;
+                    Double Carbo = jobject.getDouble("Carbohydrates") * multiplier;
+                    Double Fat = jobject.getDouble("Fat") * multiplier;
+                    Double Prot = jobject.getDouble("Protein") * multiplier;
+
+                    totKcal = totKcal + jobject.getDouble("Kalorit") * multiplier;
+                    totCarbo = totCarbo + jobject.getDouble("Carbohydrates") * multiplier;
+                    totFat = totFat + jobject.getDouble("Fat") * multiplier;
+                    totProt = totProt + jobject.getDouble("Protein") * multiplier;
 
 
                     String k = "Food: " + jobject.getString("Food") + "\t\t" + jobject.getInt("FoodAmount") + "g\n"
-                            + "Kcal: " + Math.round(jobject.getDouble("Kalorit") * kerroin) + "\n"
-                            + "Carbohydrates: " + Math.round(jobject.getDouble("Carbohydrates") * kerroin) + "g\t\t"
-                            + "Protein: " + Math.round(jobject.getDouble("Protein") * kerroin) + "g\t\t"
-                            + "Fat: " + Math.round(jobject.getDouble("Fat") * kerroin) + "g\n\n";
+                            + "Kcal: " + Math.round(Kcal) + "\n"
+                            + "Carbohydrates: " + Math.round(Carbo) + "g\t\t"
+                            + "Protein: " + Math.round(Fat) + "g\t\t"
+                            + "Fat: " + Math.round(Prot) + "g\n\n";
                     singlemeal = singlemeal + k;
 
                 }
@@ -85,7 +94,6 @@ public class MealHistory {
     }
 
 
-
     /* New meals added to the meals collection are in wrong form and must go trough this. */
     public ArrayList<String> SetArrayListforAdapter(String json) {
         try {
@@ -102,19 +110,19 @@ public class MealHistory {
 
                 JSONObject jobject = jarray.getJSONObject(i);
 
-                int kerroin = (jobject.getInt("FoodAmount") / 100);
+                Double multiplier = (jobject.getDouble("FoodAmount") / 100);
 
-                totKcal = totKcal + jobject.getDouble("Kalorit") * kerroin;
-                totCarbo = totCarbo + jobject.getDouble("Carbohydrates") * kerroin;
-                totFat = totFat + jobject.getDouble("Protein") * kerroin;
-                totProt = totProt + jobject.getDouble("Fat") * kerroin;
+                totKcal = totKcal + jobject.getDouble("Kalorit") * multiplier;
+                totCarbo = totCarbo + jobject.getDouble("Carbohydrates") * multiplier;
+                totFat = totFat + jobject.getDouble("Fat") * multiplier;
+                totProt = totProt + jobject.getDouble("Protein") * multiplier;
 
 
                 String k = "Food: " + jobject.getString("Food") + "\t\t" + jobject.getInt("FoodAmount") + "g\n"
-                        + "Kcal: " + Math.round(jobject.getDouble("Kalorit") * kerroin) + "\n"
-                        + "Carbohydrates: " + Math.round(jobject.getDouble("Carbohydrates") * kerroin) + "g\t\t"
-                        + "Protein: " + Math.round(jobject.getDouble("Protein") * kerroin) + "g\t\t"
-                        + "Fat: " + Math.round(jobject.getDouble("Fat") * kerroin) + "g\n\n";
+                        + "Kcal: " + Math.round(jobject.getDouble("Kalorit")) * multiplier + "\n"
+                        + "Carbohydrates: " + Math.round(jobject.getDouble("Carbohydrates")) * multiplier + "g\t\t"
+                        + "Protein: " + Math.round(jobject.getDouble("Protein")) * multiplier + "g\t\t"
+                        + "Fat: " + Math.round(jobject.getDouble("Fat")) * multiplier + "g\n\n";
                 singlemeal = singlemeal + k;
 
             }
@@ -131,3 +139,38 @@ public class MealHistory {
         return pastmeals;
     }
 }
+/*  DOES NOT WORK!!!
+    public int GetMealsForProgress(String Today) throws JSONException, ParseException {
+
+            String json = DataHolder.getInstance().mealjson;
+            Double totKcal = 0.0;
+            if (json != null) {
+                try {
+                    String[] jsonsplit = json.split("(?<=])");
+                    for (String s : jsonsplit) {
+                        String singlemeal = "";
+                        JSONArray jarray = new JSONArray(s);
+
+                        for (int i = 0; i < jarray.length(); i++) {
+                            JSONObject jobjectgetime = jarray.getJSONObject(i);
+                            DateFormat originalFormat = new SimpleDateFormat("E dd-MM-yyyy HH:mm:ss");
+                            SimpleDateFormat targetFormat = new SimpleDateFormat("E dd-MM-yyyy");
+                            String pvm = jobjectgetime.getString("pvm");
+                            Date date = originalFormat.parse(pvm);
+                            String formattedDate = targetFormat.format(date);
+                            if (Today.equals(formattedDate)) {
+                                Double multiplier = (jobjectgetime.getDouble("FoodAmount") / 100);
+                                totKcal = totKcal + jobjectgetime.getDouble("Kalorit") * multiplier;
+                            }
+                        }
+                    }
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        int returnKcal = (int) Math.round(totKcal);
+        System.out.println(returnKcal + "RETURNI KALORIMÄÄRÄ###############################################");
+        return returnKcal;
+        }
+*/
+

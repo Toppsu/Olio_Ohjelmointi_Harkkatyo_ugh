@@ -10,6 +10,7 @@ public class DataHolder {
     User currentUser;
 
     ArrayList<String> MealHistoryArray = new ArrayList<>();
+    String mealjson = null;
 
     private DataHolder(){}
 

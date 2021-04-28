@@ -7,6 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+
+import org.json.JSONException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainScreenView extends AppCompatActivity {
 
@@ -14,7 +21,10 @@ public class MainScreenView extends AppCompatActivity {
     private Button cardioWorkoutButton;
     private Button mealButton;
     private Button userInfo;
+
     Context context = null;
+
+    MealHistory mhis = new MealHistory();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +61,5 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
-/*
-    public void openMealHistory(View v) {
-        Intent intent = new Intent(this,List_past_meals.class);
-        startActivity(intent);
-    }
-*/
 
 }
