@@ -74,23 +74,4 @@
         android:textSize="36sp"
         android:gravity="center"/>
 
-    <Button
-        android:id="@+id/reeniNappula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp"
-        android:onClick="openMealActivity"
-        android:text="reeni" />
-
-    <Button
-        android:id="@+id/paaruutuun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp"
-        android:layout_toEndOf="@id/reeniNappula"
-        android:onClick="openMealActivity"
-        android:text="paaruutuun" />
-
 </RelativeLayout>
