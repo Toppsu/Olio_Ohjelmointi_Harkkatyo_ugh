@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class WorkoutActivity extends AppCompatActivity {
 
     private RecyclerView workoutRecyclerView;
-    private RecyclerView.Adapter workoutRecyclerViewAdapter;
+    private WorkoutAdapter workoutRecyclerViewAdapter;
     private RecyclerView.LayoutManager workoutLayoutManager;
 
     private Button addWorkoutButton;
@@ -51,7 +51,9 @@ public class WorkoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 exerciseArrayList.add(new Exercise(mEditExercise.getText().toString(),mEditSets.getText().toString(),mEditReps.getText().toString(),mEditWeights.getText().toString(),ID));
+                workoutRecyclerViewAdapter.notifyItemInserted(ID);
                 ID = ID+1;
+
             }
         });
 
@@ -72,6 +74,14 @@ public class WorkoutActivity extends AppCompatActivity {
         workoutRecyclerViewAdapter = new WorkoutAdapter(exerciseArrayList);
         workoutRecyclerView.setLayoutManager(workoutLayoutManager);
         workoutRecyclerView.setAdapter(workoutRecyclerViewAdapter);
+
+        workoutRecyclerViewAdapter.setOnItemClickListener(new WorkoutAdapter.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+                exerciseArrayList.remove(position);
+                workoutRecyclerViewAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 }

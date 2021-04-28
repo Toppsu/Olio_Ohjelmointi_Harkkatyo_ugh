@@ -8,34 +8,24 @@
     tools:context=".MainScreenView">
 
     <Button
-        android:id="@+id/strengthWorkoutButton"
+        android:id="@+id/workoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="8dp"
         android:backgroundTint="#81D4FA"
-        android:text="Strength Workout"
+        android:onClick="openWorkoutActivity"
+        android:text="Workout"
         android:textColor="@color/black"
         app:strokeColor="#505050"
         app:strokeWidth="1dp" />
 
-    <Button
-        android:id="@+id/cardioWorkoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/strengthWorkoutButton"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="#81D4FA"
-        android:text="Cardio Workout"
-        android:textColor="@color/black"
-        app:strokeColor="#505050"
-        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/mealButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cardioWorkoutButton"
+        android:layout_below="@id/workoutButton"
         android:layout_alignParentEnd="true"
         android:backgroundTint="#81D4FA"
         android:onClick="openMealActivity"

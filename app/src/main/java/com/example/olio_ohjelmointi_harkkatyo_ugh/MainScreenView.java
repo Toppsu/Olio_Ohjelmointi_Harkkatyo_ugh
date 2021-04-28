@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 public class MainScreenView extends AppCompatActivity {
 
-    private Button strengthWorkoutButton;
-    private Button cardioWorkoutButton;
+    private Button workoutButton;
     private Button mealButton;
     private Button userInfo;
     Context context = null;
@@ -27,8 +26,7 @@ public class MainScreenView extends AppCompatActivity {
 
         context = MainScreenView.this;
 
-        strengthWorkoutButton = (Button) findViewById(R.id.strengthWorkoutButton);
-        cardioWorkoutButton = (Button) findViewById(R.id.cardioWorkoutButton);
+        workoutButton = (Button) findViewById(R.id.workoutButton);
         mealButton = (Button) findViewById(R.id.mealButton);
         userInfo = (Button) findViewById(R.id.userInfoButton);
 
@@ -46,8 +44,15 @@ public class MainScreenView extends AppCompatActivity {
             bmi.setText("BMI: N/A");
         }
 
-
+        workoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWorkoutActivity(v);
+            }
+        });
     }
+
+
 
     public void openUserInfoActivity(View v) {
         Intent intent = new Intent(this,UserInfo.class);
@@ -59,8 +64,8 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void openWorkoutActivity(View v) {
-        Intent intent = new Intent(this,WorkoutActivity.class);
+    public void openWorkoutActivity(View v) {
+        Intent intent = new Intent(this, WorkoutActivity.class);
         startActivity(intent);
     }
 
