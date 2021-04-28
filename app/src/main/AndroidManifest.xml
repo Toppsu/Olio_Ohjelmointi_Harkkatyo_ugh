@@ -12,11 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Olio_Ohjelmointi_Harkkatyo_ugh">
         <activity android:name=".UserInfo"></activity>
-        <activity android:name=".WeigthEntry"></activity>
         <activity android:name=".List_past_meals" />
         <activity android:name=".Meal_mainscreen" />
         <activity android:name=".CardioActivity" />
-        <activity android:name=".TimedWorkoutActivity" />
         <activity android:name=".WorkoutActivity" />
         <activity android:name=".MealConstructor" />
         <activity android:name=".RegisterActivity" />

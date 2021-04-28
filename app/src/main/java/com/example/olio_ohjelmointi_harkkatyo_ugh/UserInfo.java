@@ -49,7 +49,7 @@ public class UserInfo extends AppCompatActivity {
     }
 
 
-
+    //Save changes to the user info (height etc.)
     public void saveChanges(View v){
         String h = heigth.getText().toString();
         String w = weigth.getText().toString();
@@ -69,6 +69,7 @@ public class UserInfo extends AppCompatActivity {
 
     }
 
+    //Return back to MainScreenView
     public void exit(View v){
         Intent intent = new Intent(this, MainScreenView.class);
         startActivity(intent);
