@@ -140,38 +140,3 @@ public class MealHistory {
         return pastmeals;
     }
 }
-/*  DOES NOT WORK!!!
-    public int GetMealsForProgress(String Today) throws JSONException, ParseException {
-
-            String json = DataHolder.getInstance().mealjson;
-            Double totKcal = 0.0;
-            if (json != null) {
-                try {
-                    String[] jsonsplit = json.split("(?<=])");
-                    for (String s : jsonsplit) {
-                        String singlemeal = "";
-                        JSONArray jarray = new JSONArray(s);
-
-                        for (int i = 0; i < jarray.length(); i++) {
-                            JSONObject jobjectgetime = jarray.getJSONObject(i);
-                            DateFormat originalFormat = new SimpleDateFormat("E dd-MM-yyyy HH:mm:ss");
-                            SimpleDateFormat targetFormat = new SimpleDateFormat("E dd-MM-yyyy");
-                            String pvm = jobjectgetime.getString("pvm");
-                            Date date = originalFormat.parse(pvm);
-                            String formattedDate = targetFormat.format(date);
-                            if (Today.equals(formattedDate)) {
-                                Double multiplier = (jobjectgetime.getDouble("FoodAmount") / 100);
-                                totKcal = totKcal + jobjectgetime.getDouble("Kalorit") * multiplier;
-                            }
-                        }
-                    }
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-        int returnKcal = (int) Math.round(totKcal);
-        System.out.println(returnKcal + "RETURNI KALORIMÄÄRÄ###############################################");
-        return returnKcal;
-        }
-*/
-

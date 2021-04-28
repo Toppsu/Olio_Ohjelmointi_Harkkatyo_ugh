@@ -15,7 +15,7 @@
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="4dp"
         android:onClick="valmis_valinta"
-        android:text="Valmis" />
+        android:text="Done" />
 
     <EditText
         android:id="@+id/searchFilter"
@@ -25,7 +25,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:layout_toStartOf="@+id/RuokaValmis"
-        android:hint="Hae ruokia" />
+        android:hint="Search foods" />
 
     <ListView
         android:id="@+id/listview"

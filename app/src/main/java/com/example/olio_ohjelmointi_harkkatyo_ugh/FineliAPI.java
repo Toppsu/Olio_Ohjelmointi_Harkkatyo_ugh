@@ -79,33 +79,3 @@ public class FineliAPI {
         return response;
     }
 }
-
-
-
-    /* Fethces the JSON from fineli API
-    public String getJSON (int id) {
-        String response = null;
-        try {
-            URL url = new URL("https://fineli.fi/fineli/api/v1/foods/" + id);
-            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-            response = sb.toString();
-            in.close();
-            br.close();
-
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return response;
-    }*/
