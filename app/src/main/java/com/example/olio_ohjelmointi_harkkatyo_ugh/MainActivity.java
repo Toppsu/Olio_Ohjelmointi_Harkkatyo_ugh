@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    //Logs in the user. Checks if there is a corresponding user for the given password and username.
+    //If there is, set user as currentUser and move them to MainScreenView
     public void logIn(View v){
         String username = usernameInput.getEditText().getText().toString();
         String password = passwordInput.getEditText().getText().toString();
@@ -104,11 +107,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         } else {
+            //Search if there is a user with given username
             User user = databaseHelper.findUser(username);
 
+            //Check if the password is correct
             if (user != null){
                 byte[] salt = user.getSalt();
                 String securePassword = passwordChecker.getSecurePassword(password, salt);
+
+                //Log in the user and load any files needed
                 if (securePassword.matches(user.getPassword())){
                     System.out.println("Logged in as "+user.getUsername());
                     dataHolder.currentUser = user;
@@ -121,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, /*R.string.invalid_credentials */ "Invalid credentials", Toast.LENGTH_LONG).show();
             }
-            //findUser
-            //Validate user inputs
         }
-
     }
 }

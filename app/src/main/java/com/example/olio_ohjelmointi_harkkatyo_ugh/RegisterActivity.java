@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         context = RegisterActivity.this;
 
         textInputEmail = (TextInputLayout) findViewById(R.id.text_input_email);
-
         textInputUsername = (TextInputLayout) findViewById(R.id.text_input_username);
         textInputPassword = (TextInputLayout) findViewById(R.id.text_input_password);
         textInputConfirmPassword = (TextInputLayout) findViewById(R.id.text_input_confirm_password);
@@ -45,13 +44,19 @@ public class RegisterActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
     }
 
+
+
+
     public void register(View v){
 
+        //Get inputs from fields
         String password = textInputPassword.getEditText().getText().toString().trim();
         String confirmPassword = textInputConfirmPassword.getEditText().getText().toString().trim();
         String username = textInputUsername.getEditText().getText().toString();
         String email = textInputEmail.getEditText().getText().toString();
 
+
+        //This condition creates new user
         if (validateEmail(email) & validatePassword(password, confirmPassword) & validateUsername(username)){
 
             //Generate salt for the user
@@ -71,11 +76,10 @@ public class RegisterActivity extends AppCompatActivity {
             User newUser = new User (username, email, securePassword, salt);
             boolean createUser = databaseHelper.addUser(newUser);
 
+            //Generate folder for user specific info such as meal history
             File path = context.getFilesDir();
             File f1 = new File(path+"/"+username);
-            f1.mkdirs();
 
-            //Create folder for user
             if (createUser && f1.mkdir()){
                 System.out.println("User created");
                 Intent intent = new Intent(this, MainActivity.class);
@@ -132,6 +136,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+
+    //Checks if the username is OK
     private boolean validateUsername(String username){
         boolean isValid = false;
 

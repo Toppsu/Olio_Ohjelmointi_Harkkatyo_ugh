@@ -6,6 +6,7 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
+//Contains methods for handling passwords
 
 public class PasswordChecker {
 
@@ -22,7 +23,7 @@ public class PasswordChecker {
                     "$");
 
 
-    //Checks "password" and "confirm password" are identical
+    //Checks inputs: "password" and "confirm password" are identical
     public boolean checkPassword(String password, String confirmPassword){
         if(password.equals(confirmPassword)){
             return true;
@@ -42,7 +43,7 @@ public class PasswordChecker {
     }
 
 
-    //Hash and salt the password
+    //Input password and salt, output salted and hashed password
     public static String getSecurePassword(String password, byte[] salt){
         String securePassword = null;
         try {
@@ -69,7 +70,7 @@ public class PasswordChecker {
     }
 
 
-    //Add salt
+    //Generate new salt
     public byte[] newSalt() throws NoSuchAlgorithmException, NoSuchProviderException {
         //Always use a SecureRandom generator
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
