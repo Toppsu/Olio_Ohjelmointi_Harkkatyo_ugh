@@ -45,15 +45,13 @@ public class DatabaseHelper extends AppCompatActivity {
 
     }
 
-
+    //Converts given json string into list of User objects
     public void readJSON(String file){
         String json = getJSON(file);
         Gson gson = new Gson();
 
         if (json != null) {
             dataHolder.userlist = gson.fromJson(json, userListType);
-        } else {
-
         }
     }
 
@@ -108,10 +106,10 @@ public class DatabaseHelper extends AppCompatActivity {
         return json;
     }
 
-
+    //Add given User object to userlist and corresponding .json file
     public boolean addUser(User user){
 
-        //Adds user to the userArray
+        //Adds user to the userlist
         dataHolder.userlist.add(user);
         String filename = "userlist.json";
 
@@ -134,6 +132,7 @@ public class DatabaseHelper extends AppCompatActivity {
 
     }
 
+    //Searches and returns User object with given username
     public User findUser(String username) {
         User u = null;
 
@@ -145,7 +144,7 @@ public class DatabaseHelper extends AppCompatActivity {
         return u;
     }
 
-    //Check if username is already in use
+    //Check if there is existing user with given username
     public boolean findUserName(String username) {
         boolean user_found = false;
 
@@ -158,7 +157,7 @@ public class DatabaseHelper extends AppCompatActivity {
         return user_found;
     }
 
-
+    //Check if there is existing user with given e-mail
     public boolean findUserEmail(String email) {
         boolean user_found = false;
 
@@ -170,7 +169,7 @@ public class DatabaseHelper extends AppCompatActivity {
         return user_found;
     }
 
-
+    //Update users info to userlist and corresponding .json file
     public boolean updateUser(User user){
         List<User> temp = new ArrayList<User>();
 
