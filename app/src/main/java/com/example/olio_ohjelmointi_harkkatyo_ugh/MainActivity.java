@@ -42,23 +42,6 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = (TextInputLayout) findViewById(R.id.password);
         register = findViewById(R.id.signButton);
         login = findViewById(R.id.loginButton);
-        reeninappula = (Button) findViewById(R.id.reeniNappula);
-        paaruutuun = (Button) findViewById(R.id.paaruutuun);
-
-        reeninappula.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWorkoutActivity();
-            }
-        });
-
-        paaruutuun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMainScreenView();
-            }
-        });
-
     }
 
     private void openMainScreenView() {
