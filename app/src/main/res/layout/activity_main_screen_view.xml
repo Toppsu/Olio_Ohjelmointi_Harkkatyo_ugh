@@ -37,6 +37,7 @@
         android:layout_below="@id/cardioWorkoutButton"
         android:layout_alignParentEnd="true"
         android:backgroundTint="#81D4FA"
+        android:onClick="openMealActivity"
         android:text="@string/add_meal"
         android:textColor="@color/black"
         app:strokeColor="#505050"

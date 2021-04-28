@@ -16,7 +16,6 @@
         <activity android:name=".Meal_mainscreen" />
         <activity android:name=".CardioActivity" />
         <activity android:name=".TimedWorkoutActivity" />
-        <activity android:name=".Meal_mainscreen" />
         <activity android:name=".WorkoutActivity" />
         <activity android:name=".MealConstructor" />
         <activity android:name=".RegisterActivity" />
