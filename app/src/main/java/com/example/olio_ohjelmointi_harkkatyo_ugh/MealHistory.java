@@ -54,6 +54,7 @@ public class MealHistory {
                 Double totProt = 0.0;
                 for (int i = 0; i < jarray.length(); i++) {
 
+                    /* For loop to chech all instances, then it is just parsing a string together*/
                     JSONObject jobject = jarray.getJSONObject(i);
 
                     Double multiplier = (jobject.getDouble("FoodAmount") / 100);

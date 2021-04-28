@@ -50,10 +50,11 @@ public class MealConstructor extends AppCompatActivity {
 
 
         /* Opening inputstream from raw folder to get finnish foodnames (File is from https://fineli.fi/fineli/content/file/47)*/
-        InputStream inputStream = getResources().openRawResource(R.raw.foodnames); //TODO DOES NOT PICK RIGHT ITEM IF SEARCHED
+        /* NOT IN USE!!!*/
+        InputStream inputStream = getResources().openRawResource(R.raw.foodnames);
         Scanner scanner = new Scanner(inputStream);
 
-        /* Appending foodnames.txt content to ruokalista arraylist*/
+        /* Appending foodnames.txt content to finnish arraylist*/
         while(scanner.hasNextLine()) {
             FoodListFin.add(scanner.nextLine()/*.split(",")[1]*/);
         }
@@ -61,7 +62,7 @@ public class MealConstructor extends AppCompatActivity {
 
 
         /* Same but for english foodnames*/
-        InputStream inputStream2 = getResources().openRawResource(R.raw.foodnames_en); //TODO DOES NOT PICK RIGHT ITEM IF SEARCHED
+        InputStream inputStream2 = getResources().openRawResource(R.raw.foodnames_en);
         Scanner scanner2 = new Scanner(inputStream2);
         while(scanner2.hasNextLine()) {
             FoodListEN.add(scanner2.nextLine());
@@ -84,7 +85,7 @@ public class MealConstructor extends AppCompatActivity {
         arrayAdapterEN = new ArrayAdapter(this, android.R.layout.simple_list_item_1, DisplayListEN);
 
         listView.setAdapter(arrayAdapterEN);
-
+        /* Filter that uses the edittext box to filter the food items*/
         foodfilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -107,14 +108,16 @@ public class MealConstructor extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String onitemclickfoodname = parent.getItemAtPosition(position).toString();
-                textView.setText(onitemclickfoodname);
 
+                /*String onitemclickfoodname = parent.getItemAtPosition(position).toString();
+                textView.setText(onitemclickfoodname);*/
+                /* When tapping a food this is what happens.*/
                 /*We must do this to get the real index of the item we want because adapterview position is false cos it only takes the searched lists position*/
                 int food_real_index = DisplayListEN.indexOf(parent.getItemAtPosition(position));
                 chosen_food = FoodListEN.get(food_real_index);
                 System.out.println("Valittu ruoka uudestaan (valinta valittu) " + chosen_food);
 
+                /* Returning the data to Meal_mainscreen*/
                 if (food_button_id == 1) {
                     Intent intent = new Intent();
                     intent.putExtra("1", chosen_food);
@@ -155,7 +158,7 @@ public class MealConstructor extends AppCompatActivity {
             System.out.println(ruokainfo.get(i));
         }
     }
-
+    /* Manually press ready. (if no food selected)*/
     public void valmis_valinta(View v) {
 
     if (food_button_id == 1) {

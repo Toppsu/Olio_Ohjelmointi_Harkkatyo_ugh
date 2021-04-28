@@ -12,12 +12,12 @@ public class MealActivity implements Serializable {
     float Carbohydrates = 0;
     float Protein = 0;
     float FoodAmount = 0;
-
+    /*MealActivity, stored single food items information*/
     public MealActivity(float carbo, float Kcal, float protein, float fat, String food, float amount) {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("E dd-MM-yyyy HH:mm:ss");
         pvm = formatter.format(date);
-        Carbohydrates = carbo; //TODO LISÄÄ RUOAN YKSIKKO (gramma/litra)
+        Carbohydrates = carbo;
         Kalorit = Kcal;
         Protein = protein;
         Fat = fat;

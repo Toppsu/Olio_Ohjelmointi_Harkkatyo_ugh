@@ -21,9 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Meal_mainscreen extends AppCompatActivity {
-    Button button1;
-    Button button2;
-    Button button3;
+
 
     private String foodnumber1 = null;
     private String foodnumber2 = null;
@@ -36,7 +34,7 @@ public class Meal_mainscreen extends AppCompatActivity {
     Context context;
 
     DatabaseHelper dbhelp = new DatabaseHelper(Meal_mainscreen.this);
-
+    /* Mealhistory is used to parse the data to right type for the mealhistory */
     MealHistory mealh = new MealHistory();
 
     @Override
@@ -47,7 +45,8 @@ public class Meal_mainscreen extends AppCompatActivity {
 
     }
 
-    /* When adding food then we go to mealconstructor */
+    /* When adding food (pressing the button) we then go to mealconstructor. There are 3 buttons and 3 foodslots
+    * We need to transfer data both ways, buttonID tells which slot to add the food*/
     public void Button1press(View v) {
         Intent intent = new Intent(this, MealConstructor.class);
         int buttonID = 1;
@@ -69,7 +68,9 @@ public class Meal_mainscreen extends AppCompatActivity {
         startActivityForResult(intent, 123);
     }
 
-
+    /* These take the Food that is selected and append it to the foodbox.
+    * String that they get contains firstly the food id the the name, we need the id
+    * to get the correct info from fineli's API. That's why the split.*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -100,16 +101,17 @@ public class Meal_mainscreen extends AppCompatActivity {
             }
         }
     }
-
+        /* Here we check all the 3 possible fooditems and make an arraylist out of them and their nutrition vlaues.
+        * This arraylist then gets saved as json with Gson*/
     public void MealActivityReady(View v) {
 
         ArrayList<Object> ruokailu = new ArrayList<>();
 
         if (foodnumber1 != null) {
             String[] parts = foodnumber1.split("\\t");
-            String food1_id = parts[0];
-            String food1_name = parts[1];
-            EditText food1grams = (EditText) findViewById(R.id.ruoka1maara);
+            String food1_id = parts[0]; // ID part
+            String food1_name = parts[1]; // Name part, see foodnames_en.txt to see the list where these come from
+            EditText food1grams = (EditText) findViewById(R.id.ruoka1maara); // Taking the food gram amount fron edittext
             String isempty = food1grams.getText().toString();
             if (isempty.matches("")) {
                 Toast.makeText(this, "Add food amount!", Toast.LENGTH_SHORT).show();
@@ -120,7 +122,7 @@ public class Meal_mainscreen extends AppCompatActivity {
                 for (int i = 0; i < foodnumber1arraylist.size(); i++) {
                     System.out.println(foodnumber1arraylist.get(i));
                 }
-                /* Makes a MealActivity object out of the food parameters.*/
+                /* Makes a MealActivity object out of the food parameters. Parameters are in known order so we use indexes*/
                 MealActivity foodnumber1object
                         = new MealActivity(Float.parseFloat(foodnumber1arraylist.get(0))
                         , Float.parseFloat(foodnumber1arraylist.get(1))
@@ -186,29 +188,21 @@ public class Meal_mainscreen extends AppCompatActivity {
         SaveMeal(ruokailu);
     }
 
-    public String GetMealName() {
-        EditText MealName = (EditText) findViewById(R.id.MealName);
-        String Name = MealName.getText().toString();
-        return Name;
-    }
-
     public void SaveMeal(ArrayList Meal) {
         if (Meal != null) {
-            String nimi = GetMealName();
-            /*String filename = nimi + " " + Calendar.getInstance().getTime() + ".json";*/
-            String filename = "Meals.json";
-            Gson gson = new Gson();
+
+            Gson gson = new Gson(); // Using Gson to make the Meals.json
             String s = gson.toJson(Meal);
             System.out.println(context.getFilesDir());
             try {
-
+                /* Basic opening the current users folder and appending the file to there */
                 File path = context.getFilesDir();
                 File ruokafilu = new File(path + "/"+ DataHolder.getInstance().currentUser.getUsername()+"/Meals.json");
                 FileWriter filewriter = new FileWriter(ruokafilu,true);
                 filewriter.write(s);
                 filewriter.close();
                 DataHolder.getInstance().mealjson = DataHolder.getInstance().mealjson + s;
-                DataHolder.getInstance().MealHistoryArray.addAll(mealh.SetArrayListforAdapter(s));
+                DataHolder.getInstance().MealHistoryArray.addAll(mealh.SetArrayListforAdapter(s)); //Also appending to the DataHolder so we don't have to read the json again to there
                 System.out.println(getFilesDir());
                 Intent intent = new Intent(this,MainScreenView.class);
                 startActivity(intent);

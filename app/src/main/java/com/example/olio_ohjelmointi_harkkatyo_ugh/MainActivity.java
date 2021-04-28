@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 if (securePassword.matches(user.getPassword())){
                     System.out.println("Logged in as "+user.getUsername());
                     dataHolder.currentUser = user;
-                    dataHolder.MealHistoryArray = mealhistory.GetMealHistory(getFilesDir().toString());
+                    dataHolder.MealHistoryArray = mealhistory.GetMealHistory(getFilesDir().toString()); //Reading the Meals.json and putting it in to dataholder so we only read the json once per app opening
                     Intent intent = new Intent(this, MainScreenView.class);
                     startActivity(intent);
                 } else {

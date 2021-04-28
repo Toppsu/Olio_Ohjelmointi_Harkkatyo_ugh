@@ -24,7 +24,6 @@ public class MainScreenView extends AppCompatActivity {
 
     Context context = null;
 
-    MealHistory mhis = new MealHistory();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
