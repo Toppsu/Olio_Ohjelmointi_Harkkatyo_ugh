@@ -12,6 +12,8 @@ public class DataHolder {
     ArrayList<String> MealHistoryArray = new ArrayList<>();
     String mealjson = null;
 
+    ArrayList<Exercise> WorkoutArrayList = new ArrayList<>();
+
     private DataHolder(){}
 
     static DataHolder getInstance(){

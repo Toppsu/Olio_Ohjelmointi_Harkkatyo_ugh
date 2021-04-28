@@ -23,6 +23,7 @@ public class WorkoutActivity extends AppCompatActivity {
     private String exerciseName,sets,reps,weights;
     private String inputExercise,inputSets,inputReps,inputWeights;
     private ArrayList<Exercise> exerciseArrayList;
+    private ArrayList<Exercise> pastExercises;
     private int ID;
     private EditText mEditExercise;
     private EditText mEditSets;
@@ -36,7 +37,15 @@ public class WorkoutActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ID = 0;
         setContentView(R.layout.activity_workout);
-        createExerciseArrayList();
+
+        pastExercises = DataHolder.getInstance().WorkoutArrayList;
+        createExerciseArrayLists();
+        if (pastExercises.isEmpty()!=true){
+            exerciseArrayList = pastExercises;
+            ID = exerciseArrayList.size();
+        }
+
+
         buildRecyclerView();
 
         mEditExercise = (EditText) findViewById(R.id.editExercise);
@@ -51,6 +60,7 @@ public class WorkoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 exerciseArrayList.add(new Exercise(mEditExercise.getText().toString(),mEditSets.getText().toString(),mEditReps.getText().toString(),mEditWeights.getText().toString(),ID));
+                DataHolder.getInstance().WorkoutArrayList = exerciseArrayList;
                 workoutRecyclerViewAdapter.notifyItemInserted(ID);
                 ID = ID+1;
 
@@ -59,11 +69,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-    public void createExerciseArrayList(){
+    public void createExerciseArrayLists(){
         exerciseArrayList = new ArrayList<Exercise>();
     }
 
@@ -79,6 +85,7 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public void onDeleteClick(int position) {
                 exerciseArrayList.remove(position);
+                DataHolder.getInstance().WorkoutArrayList = exerciseArrayList;
                 workoutRecyclerViewAdapter.notifyDataSetChanged();
             }
         });
