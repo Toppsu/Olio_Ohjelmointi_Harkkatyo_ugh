@@ -9,10 +9,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -49,5 +51,9 @@ public class List_past_meals extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
+    public void back(View v) {
+        Intent intent = new Intent(this,MainScreenView.class);
+        startActivity(intent);
+    }
 
 }
