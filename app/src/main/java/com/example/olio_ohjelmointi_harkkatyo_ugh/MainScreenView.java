@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainScreenView extends AppCompatActivity {
 
@@ -15,6 +16,9 @@ public class MainScreenView extends AppCompatActivity {
     private Button mealButton;
     private Button userInfo;
     Context context = null;
+    TextView bmi;
+    DataHolder dh = DataHolder.getInstance();
+    Double BMI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +31,20 @@ public class MainScreenView extends AppCompatActivity {
         cardioWorkoutButton = (Button) findViewById(R.id.cardioWorkoutButton);
         mealButton = (Button) findViewById(R.id.mealButton);
         userInfo = (Button) findViewById(R.id.userInfoButton);
-        Button weigthEntry = (Button) findViewById(R.id.addWeigth);
+
+        bmi = (TextView) findViewById(R.id.bmi);
+
+        double h = (double)dh.currentUser.getHeigth() / (double)100;
+        int w = dh.currentUser.getWeigth();
+
+        System.out.println(w+";"+h);
+
+        if(h != 0 & w != 0) {
+            BMI = w / Math.pow(h, 2);
+            bmi.setText("BMI: "+ String.format("%.2f", BMI));
+        } else {
+            bmi.setText("BMI: N/A");
+        }
 
 
     }
@@ -51,12 +68,4 @@ public class MainScreenView extends AppCompatActivity {
         Intent intent = new Intent(this,List_past_meals.class);
         startActivity(intent);
     }
-
-    public void openWeigthEntry(View v) {
-        Intent intent = new Intent(this,WeigthEntry.class);
-        startActivity(intent);
-    }
-
-
-
 }

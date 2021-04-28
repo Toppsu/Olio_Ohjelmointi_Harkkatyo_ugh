@@ -2,8 +2,10 @@ package com.example.olio_ohjelmointi_harkkatyo_ugh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ public class UserInfo extends AppCompatActivity {
     private EditText yearOfBirth;
     DataHolder dataHolder = DataHolder.getInstance();
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
+    private Button exitButton;
 
 
     @Override
@@ -27,6 +30,7 @@ public class UserInfo extends AppCompatActivity {
         heigth = (EditText) findViewById(R.id.editHeigth);
         weigth = (EditText) findViewById(R.id.editWeigth);
         yearOfBirth = (EditText) findViewById(R.id.editYearOfBirth);
+        exitButton = (Button) findViewById(R.id.exitButton);
 
         email.setText(dataHolder.currentUser.getEmail());
         int h = dataHolder.currentUser.getHeigth();
@@ -47,12 +51,15 @@ public class UserInfo extends AppCompatActivity {
 
 
     public void saveChanges(View v){
-        //Read input data
-        dataHolder.currentUser.setEmail(email.getText().toString());
-        //TODO check the validity of the email adress
-        dataHolder.currentUser.setHeigth(Integer.parseInt(heigth.getText().toString()));
-        dataHolder.currentUser.setWeigth(Integer.parseInt(weigth.getText().toString()));
-        dataHolder.currentUser.setYearOfBirth(Integer.parseInt(yearOfBirth.getText().toString()));
+        String h = heigth.getText().toString();
+        String w = weigth.getText().toString();
+        String y = yearOfBirth.getText().toString();
+
+        if (!h.isEmpty()) {dataHolder.currentUser.setHeigth(Integer.parseInt(h));}
+
+        if (!w.isEmpty()) {dataHolder.currentUser.setWeigth(Integer.parseInt(w));}
+
+        if (!y.isEmpty()) {dataHolder.currentUser.setYearOfBirth(Integer.parseInt(y));}
 
         if(databaseHelper.updateUser(dataHolder.currentUser)) {
             Toast.makeText(this, "Save successful", Toast.LENGTH_LONG).show();
@@ -60,6 +67,11 @@ public class UserInfo extends AppCompatActivity {
             Toast.makeText(this, "Save FAILED", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public void exit(View v){
+        Intent intent = new Intent(this, MainScreenView.class);
+        startActivity(intent);
     }
 
 }

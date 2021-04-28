@@ -128,11 +128,20 @@
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
         android:onClick="saveChanges"
         android:text="Save changes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/birthYearView"
         app:layout_constraintTop_toBottomOf="@+id/editYearOfBirth" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="exit"
+        android:text="Exit"
+        app:layout_constraintEnd_toEndOf="@+id/editYearOfBirth"
+        app:layout_constraintTop_toTopOf="@+id/save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
