@@ -34,12 +34,17 @@ public class WorkoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Line below makes inputing values work by allowing scrolling up the view
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ID = 0;
         setContentView(R.layout.activity_workout);
 
+
+        //Get past exercises that were added to the dataholder
         pastExercises = DataHolder.getInstance().WorkoutArrayList;
         createExerciseArrayLists();
+
+        //Check if dataholder has contents
         if (pastExercises.isEmpty()!=true){
             exerciseArrayList = pastExercises;
             ID = exerciseArrayList.size();
@@ -59,6 +64,7 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //Adds exercise items to arraylist, copies the arraylist to dataholder and notifies the recyclerview abouut changes
                 exerciseArrayList.add(new Exercise(mEditExercise.getText().toString(),mEditSets.getText().toString(),mEditReps.getText().toString(),mEditWeights.getText().toString(),ID));
                 DataHolder.getInstance().WorkoutArrayList = exerciseArrayList;
                 workoutRecyclerViewAdapter.notifyItemInserted(ID);
@@ -74,6 +80,7 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     public void buildRecyclerView(){
+        //Building of the recyclerView by applying guide found on youtube: https://www.youtube.com/playlist?list=PLrnPJCHvNZuBtTYUuc5Pyo4V7xZ2HNtf4
         workoutRecyclerView = findViewById(R.id.workoutRecyclerView);
         workoutRecyclerView.setHasFixedSize(true);
         workoutLayoutManager = new LinearLayoutManager(this);
@@ -81,6 +88,7 @@ public class WorkoutActivity extends AppCompatActivity {
         workoutRecyclerView.setLayoutManager(workoutLayoutManager);
         workoutRecyclerView.setAdapter(workoutRecyclerViewAdapter);
 
+        //Removes items same way as adding
         workoutRecyclerViewAdapter.setOnItemClickListener(new WorkoutAdapter.OnItemClickListener() {
             @Override
             public void onDeleteClick(int position) {

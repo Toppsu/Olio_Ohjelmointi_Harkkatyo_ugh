@@ -11,11 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+
+
+//Adapter made by applying guide found on youtube: https://www.youtube.com/playlist?list=PLrnPJCHvNZuBtTYUuc5Pyo4V7xZ2HNtf4
+
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> {
 
     private ArrayList<Exercise> mExerciseArrayList;
     private OnItemClickListener mListener;
 
+    //On item click listener for delete buttons
     public interface OnItemClickListener{
         void onDeleteClick(int position);
     }
@@ -24,6 +29,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         mListener = listener;
     }
 
+    //View holder for recycler view, basically gets required UI elements from XML and sets them to recyclerView
     public static class WorkoutViewHolder extends RecyclerView.ViewHolder{
 
         public TextView exerciseTextView;
@@ -59,10 +65,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         }
     }
 
+    //ArrayList for the adapter
     public WorkoutAdapter(ArrayList<Exercise> exerciseArrayList){
         mExerciseArrayList = exerciseArrayList;
     }
 
+    //Creating the recyclerView
     @NonNull
     @Override
     public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -71,6 +79,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         return wvh;
     }
 
+    //Setting values to recyclerView
     @Override
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
         Exercise currentItem = mExerciseArrayList.get(position);
