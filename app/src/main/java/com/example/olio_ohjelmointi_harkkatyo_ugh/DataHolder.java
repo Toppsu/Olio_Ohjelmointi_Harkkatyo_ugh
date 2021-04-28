@@ -3,17 +3,16 @@ package com.example.olio_ohjelmointi_harkkatyo_ugh;
 import java.util.ArrayList;
 import java.util.List;
 
-//This holds the userlist and other stuff
+//This holds the userlist and other
 
 public class DataHolder {
-
-    //Put items to hold here
     List<User> userlist = new ArrayList<>();
     User currentUser;
 
     ArrayList<String> MealHistoryArray = new ArrayList<>();
     String mealjson = null;
 
+    ArrayList<Exercise> WorkoutArrayList = new ArrayList<>();
 
     private DataHolder(){}
 
@@ -23,5 +22,6 @@ public class DataHolder {
         }
         return instance;
     }
+
     private static DataHolder instance;
 }
