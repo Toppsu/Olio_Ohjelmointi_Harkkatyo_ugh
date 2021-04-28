@@ -32,10 +32,10 @@ public class MainScreenView extends AppCompatActivity {
 
         bmi = (TextView) findViewById(R.id.bmi);
 
+
+        //Calculates and displays the BMI
         double h = (double)dh.currentUser.getHeigth() / (double)100;
         int w = dh.currentUser.getWeigth();
-
-        System.out.println(w+";"+h);
 
         if(h != 0 & w != 0) {
             BMI = w / Math.pow(h, 2);
@@ -43,6 +43,7 @@ public class MainScreenView extends AppCompatActivity {
         } else {
             bmi.setText("BMI: N/A");
         }
+
 
         workoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
