@@ -7,13 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-
-import org.json.JSONException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainScreenView extends AppCompatActivity {
 
@@ -21,9 +14,7 @@ public class MainScreenView extends AppCompatActivity {
     private Button cardioWorkoutButton;
     private Button mealButton;
     private Button userInfo;
-
     Context context = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +27,7 @@ public class MainScreenView extends AppCompatActivity {
         cardioWorkoutButton = (Button) findViewById(R.id.cardioWorkoutButton);
         mealButton = (Button) findViewById(R.id.mealButton);
         userInfo = (Button) findViewById(R.id.userInfoButton);
+        Button weigthEntry = (Button) findViewById(R.id.addWeigth);
 
 
     }
@@ -45,13 +37,8 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openMealActivity(View v) {
-        Intent intent = new Intent(this,Meal_mainscreen.class);
-        startActivity(intent);
-    }
-
-    public void openMealHistory(View v) {
-        Intent intent = new Intent(this,List_past_meals.class);
+    private void openMealActivity(View v) {
+        Intent intent = new Intent(this,MealActivity.class);
         startActivity(intent);
     }
 
@@ -60,5 +47,16 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openWeigthEntry(View v) {
+        Intent intent = new Intent(this,WeigthEntry.class);
+        startActivity(intent);
+    }
+
+/*
+    public void openMealHistory(View v) {
+        Intent intent = new Intent(this,List_past_meals.class);
+        startActivity(intent);
+    }
+*/
 
 }
