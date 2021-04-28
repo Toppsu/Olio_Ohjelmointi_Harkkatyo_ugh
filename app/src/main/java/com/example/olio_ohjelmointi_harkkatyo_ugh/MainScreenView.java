@@ -37,8 +37,8 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void openMealActivity(View v) {
-        Intent intent = new Intent(this,MealActivity.class);
+    public void openMealActivity(View v) {
+        Intent intent = new Intent(this,Meal_mainscreen.class);
         startActivity(intent);
     }
 
@@ -47,16 +47,16 @@ public class MainScreenView extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openMealHistory(View v) {
+        Intent intent = new Intent(this,List_past_meals.class);
+        startActivity(intent);
+    }
+
     public void openWeigthEntry(View v) {
         Intent intent = new Intent(this,WeigthEntry.class);
         startActivity(intent);
     }
 
-/*
-    public void openMealHistory(View v) {
-        Intent intent = new Intent(this,List_past_meals.class);
-        startActivity(intent);
-    }
-*/
+
 
 }
